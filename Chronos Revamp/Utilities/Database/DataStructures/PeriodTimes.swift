@@ -11,10 +11,52 @@ import UIKit
 class PeriodTimes {
     var schoolDay: SchoolDay
     var grade: Grade
+    var dm = DatabaseManager()
+    var FSaltStart = [String]()
+    var FSaltEnd = [String]()
+    var FSaltName = [String]()
     
-    init(schoolDay: SchoolDay, grade: Grade) {
+    var JSaltStart = [String]()
+    var JSaltEnd = [String]()
+    var JSaltName = [String]()
+    
+    init(schoolDay: SchoolDay, grade: Grade,
+         FSStart: [String]? = nil, FSEnd: [String]? = nil, FSName: [String]? = nil,
+         JSStart: [String]? = nil, JSEnd: [String]? = nil, JSName: [String]? = nil) {
+        
         self.schoolDay = schoolDay
         self.grade = grade
+        
+        //MARK: maybe try using a protocol to get the correct values in here. If not, try saving the array to the cache and then retrieving in in DatabaseFuncs.swift. Else, try having static vars in HomeVC and then set those in the completion handler
+         
+//        if (schoolDay.daySchedule == .databasePath) {
+//            dm.FSScheduleFromPath(path: schoolDay.path) {  [self] (start, end, names) in
+//                guard let start = start, let end = end, let names = names else { return }
+//                setArray(arr: &FSaltStart, val: start)
+//                setArray(arr: &FSaltEnd, val: end)
+//                setArray(arr: &FSaltName, val: names)
+//            }
+//
+//            dm.JSScheduleFromPath(path: schoolDay.path) { [self] (start, end, names) in
+//                guard let start = start, let end = end, let names = names else { return }
+//                setArray(arr: &JSaltStart, val: start)
+//                setArray(arr: &JSaltEnd, val: end)
+//                setArray(arr: &JSaltName, val: names)
+//            }
+//        }
+        
+        print(FSaltStart)
+        print(FSaltEnd)
+        print(FSaltName)
+        
+        print(JSaltStart)
+        print(JSaltEnd)
+        print(JSaltName)
+    }
+    
+    func setArray(arr: inout [String], val: [String]) {
+        arr = val
+        return
     }
     
     //MARK: Start here, make it so you can create a periodtime object with the params and off that object you can get start and end times along with period names. From ther you can use the isThetimeBetween func to fill out the UI
@@ -62,6 +104,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return FSaltStart
             }
         }
         
@@ -108,6 +152,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return JSaltStart
             }
         }
         return nil
@@ -157,6 +203,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return FSaltEnd
             }
         }
         
@@ -203,6 +251,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return JSaltEnd
             }
         }
         return nil
@@ -252,6 +302,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return FSaltName
             }
         }
         
@@ -298,6 +350,8 @@ class PeriodTimes {
             case .weekend:
                 return nil
 
+            case .databasePath:
+                return JSaltName
             }
         }
         return nil

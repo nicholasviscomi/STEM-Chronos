@@ -14,6 +14,7 @@ enum DaySchedule {
     case Regular
     case events
     case weekend
+    case databasePath
 }
 
 enum PeriodType {
@@ -28,13 +29,15 @@ class SchoolDay {
     var periodType: PeriodType?
     var letterDay: String
     var dayInfo: String
+    var path: String
     
-    init(dateString: String, daySchedule: DaySchedule, periodType: PeriodType?, letterDay: String, dayInfo: String) {
+    init(dateString: String, daySchedule: DaySchedule, periodType: PeriodType?, letterDay: String, dayInfo: String, path: String = "") {
         self.dateString = dateString
         self.daySchedule = daySchedule
         self.periodType = periodType
         self.letterDay = letterDay
         self.dayInfo = dayInfo
+        self.path = path
     }
     
 }

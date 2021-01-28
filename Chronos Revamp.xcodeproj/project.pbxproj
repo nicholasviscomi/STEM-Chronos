@@ -18,8 +18,10 @@
 		7B06564924E86AA6005134E4 /* SchoolDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06564824E86AA6005134E4 /* SchoolDay.swift */; };
 		7B06564B24E87294005134E4 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06564A24E87294005134E4 /* Schedule.swift */; };
 		7B4990F025BF905200210135 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4990EF25BF905200210135 /* Colors.swift */; };
+		7B4990F525BF951100210135 /* DatabaseFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4990F425BF951100210135 /* DatabaseFuncs.swift */; };
 		7B6167C924EC717F00B7AA73 /* PeriodTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6167C824EC717F00B7AA73 /* PeriodTimes.swift */; };
 		7B66B27C24E760A5004DD70B /* GradeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */; };
+		7BAEA83425C1E1BA00695920 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEA83325C1E1BA00695920 /* CacheManager.swift */; };
 		7BC00C8024F1FD470095BF61 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */; };
 		7BCD467C24E1EED60004C86B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD467B24E1EED60004C86B /* HomeViewController.swift */; };
 		7BCD468424E1EEED0004C86B /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD467F24E1EEED0004C86B /* ScheduleCell.swift */; };
@@ -44,8 +46,10 @@
 		7B06564824E86AA6005134E4 /* SchoolDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDay.swift; sourceTree = "<group>"; };
 		7B06564A24E87294005134E4 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		7B4990EF25BF905200210135 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		7B4990F425BF951100210135 /* DatabaseFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFuncs.swift; sourceTree = "<group>"; };
 		7B6167C824EC717F00B7AA73 /* PeriodTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTimes.swift; sourceTree = "<group>"; };
 		7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSelectionViewController.swift; sourceTree = "<group>"; };
+		7BAEA83325C1E1BA00695920 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
 		7BCD467B24E1EED60004C86B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7BCD467F24E1EEED0004C86B /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				7B4990EC25BF901400210135 /* Database */,
+				7BAEA83325C1E1BA00695920 /* CacheManager.swift */,
 				7BCD468224E1EEED0004C86B /* Helper.swift */,
 				7B4990EF25BF905200210135 /* Colors.swift */,
 			);
@@ -133,13 +138,48 @@
 		7B4990EC25BF901400210135 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				7B06564524E868BD005134E4 /* DatabaseManager.swift */,
+				7B8C2D7325C22F6200CDAF01 /* DataStructures */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		7B4990F325BF94E500210135 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7BCD467B24E1EED60004C86B /* HomeViewController.swift */,
+				7B4990F425BF951100210135 /* DatabaseFuncs.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7B4990F725BF955100210135 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */,
+				7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		7B4990F825BF957300210135 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */,
+				7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7B8C2D7325C22F6200CDAF01 /* DataStructures */ = {
+			isa = PBXGroup;
+			children = (
 				7B06564824E86AA6005134E4 /* SchoolDay.swift */,
 				7B6167C824EC717F00B7AA73 /* PeriodTimes.swift */,
-				7B06564524E868BD005134E4 /* DatabaseManager.swift */,
 				7BCD468024E1EEED0004C86B /* Times.swift */,
 				7B06564A24E87294005134E4 /* Schedule.swift */,
 			);
-			path = Database;
+			path = DataStructures;
 			sourceTree = "<group>";
 		};
 		7BCD467D24E1EEED0004C86B /* Cells */ = {
@@ -153,11 +193,9 @@
 		7BCD468D24E1EFBB0004C86B /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				7BCD467B24E1EED60004C86B /* HomeViewController.swift */,
-				7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */,
-				7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */,
-				7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */,
-				7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */,
+				7B4990F325BF94E500210135 /* Home */,
+				7B4990F725BF955100210135 /* Schedule */,
+				7B4990F825BF957300210135 /* Settings */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -262,6 +300,8 @@
 			files = (
 				7BCD467C24E1EED60004C86B /* HomeViewController.swift in Sources */,
 				7B4990F025BF905200210135 /* Colors.swift in Sources */,
+				7B4990F525BF951100210135 /* DatabaseFuncs.swift in Sources */,
+				7BAEA83425C1E1BA00695920 /* CacheManager.swift in Sources */,
 				7B06564924E86AA6005134E4 /* SchoolDay.swift in Sources */,
 				7BCD468424E1EEED0004C86B /* ScheduleCell.swift in Sources */,
 				7BCD468A24E1EEFE0004C86B /* SettingsViewController.swift in Sources */,

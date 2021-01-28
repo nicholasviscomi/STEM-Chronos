@@ -25,13 +25,13 @@ extension DatabaseManager {
                 //["Letter day": ["info": " "], "Type of day": ["info": ""], "Day Schedule": ["info": "weekend"]]
             }
             
-            guard let letterDay = data["Letter Day"] as? String, let typeOfDay = data["Day Info"] as? String, let item = data["Day Schedule"] as? String else {
+            guard let letterDay = data["Letter Day"] as? String, let typeOfDay = data["Day Info"] as? String, let rawDaySchedule = data["Day Schedule"] as? String else {
                 completion(nil)
                 return
             }
             
             var daySchedule: DaySchedule!
-            switch item {
+            switch rawDaySchedule {
             case "2hr delay":
                 daySchedule = .twoHrDelay
                 break
@@ -48,7 +48,7 @@ extension DatabaseManager {
                 daySchedule = .weekend
                 break
             default:
-                completion(nil)
+                daySchedule = .databasePath
                 break
             }
             
@@ -68,8 +68,13 @@ extension DatabaseManager {
             }
             
             
-            let schoolDay = SchoolDay(dateString: currentDate(), daySchedule: daySchedule, periodType: periodType, letterDay: letterDay, dayInfo: typeOfDay)
+            var schoolDay: SchoolDay!
+            if (daySchedule == .databasePath) {
+                schoolDay = SchoolDay(dateString: currentDate(), daySchedule: daySchedule, periodType: periodType, letterDay: letterDay, dayInfo: typeOfDay, path: rawDaySchedule)
+            } else {
+                schoolDay = SchoolDay(dateString: currentDate(), daySchedule: daySchedule, periodType: periodType, letterDay: letterDay, dayInfo: typeOfDay)
             
+            }
             completion(schoolDay)
             
         }
@@ -106,6 +111,45 @@ extension DatabaseManager {
             completion(info)
         }
     }
+    
+    public func FSScheduleFromPath(path: String, completion: @escaping ([String]?, [String]?, [String]?) -> Void) {
+        database.child("\(path)/FS").observeSingleEvent(of: .value) { (snapshot) in
+            guard let data = snapshot.value as? [String: String],
+                  let start = data["startTimes"],
+                  let end = data["endTimes"],
+                  let names = data["names"] else {
+                completion(nil, nil, nil)
+                return
+            }
+            
+            let startTimes = start.components(separatedBy: ",")
+            let endTimes = end.components(separatedBy: ",")
+            let periodNames = names.components(separatedBy: ",")
+            
+            completion(startTimes, endTimes, periodNames)
+        }
+        
+    }
+    
+    public func JSScheduleFromPath(path: String, completion: @escaping ([String]?, [String]?, [String]?) -> Void) {
+        database.child("\(path)/JS").observeSingleEvent(of: .value) { (snapshot) in
+            guard let data = snapshot.value as? [String: String],
+                  let start = data["startTimes"],
+                  let end = data["endTimes"],
+                  let names = data["names"] else {
+                completion(nil, nil, nil)
+                return
+            }
+            
+            let startTimes = start.components(separatedBy: ",")
+            let endTimes = end.components(separatedBy: ",")
+            let periodNames = names.components(separatedBy: ",")
+            
+            completion(startTimes, endTimes, periodNames)
+        }
+        
+    }
+
     
     public func isWeekend() {
         //MARK: fill out this with weekend information
