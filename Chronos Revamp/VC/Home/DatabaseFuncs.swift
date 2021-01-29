@@ -50,6 +50,9 @@ extension HomeViewController {
                 DatabaseManager.shared.getSchoolSchedule(with: schoolDay) { (schedule) in
                     if let schedule = schedule {
                         print("congrats nick you are a great programmer lol")
+                        print(schedule.startTimes)
+                        print(schedule.endTimes)
+                        print(schedule.periodName)
                         self.getTimeLeft(schedule: schedule)
                     } else {
                         self.dayInfo.text = ""

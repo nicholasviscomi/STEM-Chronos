@@ -20,38 +20,54 @@ class PeriodTimes {
     var JSaltEnd = [String]()
     var JSaltName = [String]()
     
-    init(schoolDay: SchoolDay, grade: Grade,
-         FSStart: [String]? = nil, FSEnd: [String]? = nil, FSName: [String]? = nil,
-         JSStart: [String]? = nil, JSEnd: [String]? = nil, JSName: [String]? = nil) {
+    let group = DispatchGroup()
+    
+    init(schoolDay: SchoolDay, grade: Grade, completion: @escaping (Bool) -> Void) {
         
         self.schoolDay = schoolDay
         self.grade = grade
         
         //MARK: maybe try using a protocol to get the correct values in here. If not, try saving the array to the cache and then retrieving in in DatabaseFuncs.swift. Else, try having static vars in HomeVC and then set those in the completion handler
          
-//        if (schoolDay.daySchedule == .databasePath) {
-//            dm.FSScheduleFromPath(path: schoolDay.path) {  [self] (start, end, names) in
-//                guard let start = start, let end = end, let names = names else { return }
-//                setArray(arr: &FSaltStart, val: start)
-//                setArray(arr: &FSaltEnd, val: end)
-//                setArray(arr: &FSaltName, val: names)
-//            }
-//
-//            dm.JSScheduleFromPath(path: schoolDay.path) { [self] (start, end, names) in
-//                guard let start = start, let end = end, let names = names else { return }
-//                setArray(arr: &JSaltStart, val: start)
-//                setArray(arr: &JSaltEnd, val: end)
-//                setArray(arr: &JSaltName, val: names)
-//            }
-//        }
+        if (schoolDay.daySchedule == .databasePath) {
+            group.enter()
+            dm.FSScheduleFromPath(path: schoolDay.path) {  [self] (start, end, names) in
+                guard let start = start, let end = end, let names = names else { return }
+                setArray(arr: &FSaltStart, val: start)
+                setArray(arr: &FSaltEnd, val: end)
+                setArray(arr: &FSaltName, val: names)
+                print("done 1")
+                group.leave()
+            }
+
+            group.enter()
+            dm.JSScheduleFromPath(path: schoolDay.path) { [self] (start, end, names) in
+                guard let start = start, let end = end, let names = names else { return }
+                setArray(arr: &JSaltStart, val: start)
+                setArray(arr: &JSaltEnd, val: end)
+                setArray(arr: &JSaltName, val: names)
+                print("done 2")
+                group.leave()
+            }
+        }
         
-        print(FSaltStart)
-        print(FSaltEnd)
-        print(FSaltName)
+        group.notify(queue: .main) { [self] in
+            print("Period Times")
+            print(FSaltStart)
+            print(FSaltEnd)
+            print(FSaltName)
+            
+            print(JSaltStart)
+            print(JSaltEnd)
+            print(JSaltName)
+            
+            startTimes = setStartTimes()
+            endTimes = setEndTimes()
+            periodNames = setPeriodNames()
+            completion(true)
+        }
         
-        print(JSaltStart)
-        print(JSaltEnd)
-        print(JSaltName)
+        
     }
     
     func setArray(arr: inout [String], val: [String]) {
@@ -60,7 +76,9 @@ class PeriodTimes {
     }
     
     //MARK: Start here, make it so you can create a periodtime object with the params and off that object you can get start and end times along with period names. From ther you can use the isThetimeBetween func to fill out the UI
-    var startTimes: [String]? {
+    var startTimes: [String]? = nil
+    
+    func setStartTimes() -> [String]? {
         if grade == .FS {
             switch schoolDay.daySchedule {
             case .Regular:
@@ -159,7 +177,9 @@ class PeriodTimes {
         return nil
     }
     
-    var endTimes: [String]? {
+    var endTimes: [String]? = nil
+    
+    func setEndTimes() -> [String]? {
         if grade == .FS {
             switch schoolDay.daySchedule {
             case .Regular:
@@ -258,7 +278,9 @@ class PeriodTimes {
         return nil
     }
     
-    var periodNames: [String]? {
+    var periodNames: [String]? = nil
+    
+    func setPeriodNames() -> [String]? {
         if grade == .FS {
             switch schoolDay.daySchedule {
             case .Regular:
@@ -356,4 +378,5 @@ class PeriodTimes {
         }
         return nil
     }
+    
 }

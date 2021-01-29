@@ -56,6 +56,7 @@ extension DatabaseManager {
             let oneSevenLetterDays = ["A","D","E","H","I","L"]
             let oneFourLetterDays = ["B","F","J"]
             let fiveSevenLetterDays = ["C","G","K"]
+            //add in an alternate letter day
             
             if oneSevenLetterDays.contains(letterDay) {
                 periodType = .OneSeven
@@ -80,7 +81,7 @@ extension DatabaseManager {
         }
     }
     
-    public func getSchoolSchedule(with schoolDay: SchoolDay, completion: (Schedule?) -> Void) {
+    public func getSchoolSchedule(with schoolDay: SchoolDay, completion: @escaping (Schedule?) -> Void) {
         guard HomeViewController.hasSelectedGrade, let grade = HomeViewController.grade else {
             print("no grade selected")
             return
@@ -89,13 +90,25 @@ extension DatabaseManager {
             isWeekend()
             return
         }
+        let group = DispatchGroup()
 
-        let periodTimes = PeriodTimes(schoolDay: schoolDay, grade: grade)
-        guard let startTimes = periodTimes.startTimes, let endTimes = periodTimes.endTimes, let periodNames = periodTimes.periodNames else { print("you suck bruh"); return }
+        group.enter()
+        let periodTimes = PeriodTimes(schoolDay: schoolDay, grade: grade) { done in
+            group.leave()
+        }
         
-        let schedule = Schedule(grade: grade, startTimes: startTimes, endTimes: endTimes, periodName: periodNames)
-        
-        completion(schedule)
+        group.notify(queue: .main) {
+            guard let startTimes = periodTimes.startTimes, let endTimes = periodTimes.endTimes, let periodNames = periodTimes.periodNames else { print("you suck bruh"); return }
+            print("DatabaseManager:")
+            print(startTimes)
+            print(endTimes)
+            print(periodNames)
+            
+            let schedule = Schedule(grade: grade, startTimes: startTimes, endTimes: endTimes, periodName: periodNames)
+            
+            completion(schedule)
+        }
+            
     }
     
     public func getDayInfo(completion: @escaping (String?) -> Void) {
