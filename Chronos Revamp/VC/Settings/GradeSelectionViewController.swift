@@ -22,10 +22,10 @@ class GradeSelectionViewController: UIViewController {
     private let FS : UIButton = {
         let field = UIButton()
         field.titleLabel?.font = .systemFont(ofSize: 28, weight: .medium)
-        field.layer.cornerRadius = 25
+//        field.layer.cornerRadius = 22
 //        field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.setTitle("Freshmen/Sophomore", for: .normal)
-        field.setTitleColor(.systemBackground, for: .normal)
+        field.setTitleColor(.black, for: .normal)
         field.backgroundColor = .schoolYellow
         field.titleLabel?.textAlignment = .center
         field.contentVerticalAlignment = .center
@@ -35,10 +35,10 @@ class GradeSelectionViewController: UIViewController {
     private let JS : UIButton = {
         let field = UIButton()
         field.titleLabel?.font = .systemFont(ofSize: 28, weight: .medium)
-        field.layer.cornerRadius = 25
+//        field.layer.cornerRadius = 22
 //        field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         field.setTitle("Junior/Senior", for: .normal)
-        field.setTitleColor(.systemBackground, for: .normal)
+        field.setTitleColor(.white, for: .normal)
         field.backgroundColor = .schoolPurple
         field.titleLabel?.textAlignment = .center
         field.contentVerticalAlignment = .center
@@ -47,8 +47,9 @@ class GradeSelectionViewController: UIViewController {
     
     private let confirm : UIButton = {
         let field = UIButton()
-        field.layer.cornerRadius = 25
-        field.titleLabel?.font = .systemFont(ofSize: 28, weight: .regular)
+//        field.layer.cornerRadius = 25
+        field.titleLabel?.font = .systemFont(ofSize: 25, weight: .regular)
+//        field.titleLabel?.font = .preferredFont(forTextStyle: .title2)
         field.setTitle("Confirm", for: .normal)
         field.setTitleColor(.label, for: .normal)
         field.backgroundColor = .systemBackground
@@ -70,6 +71,7 @@ class GradeSelectionViewController: UIViewController {
     
     var selectedGrade: Grade?
     let defaults = UserDefaults.standard
+    var gradeDelegate: GradeDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +113,8 @@ class GradeSelectionViewController: UIViewController {
         defaults.set(HomeViewController.hasSelectedGrade, forKey: UDKeys.firstTimeOpening)
         defaults.set("\(selectedGrade)", forKey: UDKeys.grade)
         
+        gradeDelegate?.didSelectGrade()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -119,7 +123,7 @@ class GradeSelectionViewController: UIViewController {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: view.width-100),
+            stackView.widthAnchor.constraint(equalToConstant: view.width),
             stackView.heightAnchor.constraint(equalToConstant: 200),
         ])
         

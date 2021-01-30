@@ -14,12 +14,12 @@ enum Grade {
     case JS
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, GradeDelegate {
     
     let dayInfo: UILabel = {
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 24, weight: .regular)
+        field.font = .systemFont(ofSize: 22, weight: .regular)
         field.textColor = .white
         field.numberOfLines = 5
         field.textAlignment = .left
@@ -178,6 +178,9 @@ class HomeViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         //set the colors of the text inside the circle to be .label
         //MARK: the basic schedules should be hardcoded but there should be the option for a new schedule in the database. Under day schedule, if the value it finds is not one of the base values, it should take the value it gets and use it as the database path for the schedule
+        configureViews()
+        layoutViews()
+        setupMeter()
     }
     
     
@@ -211,9 +214,14 @@ class HomeViewController: UIViewController {
         } else {
             let vc = GradeSelectionViewController()
             vc.modalPresentationStyle = .overCurrentContext
+            vc.gradeDelegate = self
             present(vc, animated: true)
             return
         }
+    }
+    
+    func didSelectGrade() {
+        getSchoolDayData(true)
     }
     
     let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
