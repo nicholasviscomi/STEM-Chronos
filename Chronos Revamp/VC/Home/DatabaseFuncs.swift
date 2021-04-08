@@ -14,7 +14,7 @@ extension HomeViewController {
     
     @objc func getSchoolDayData(_ bypass: Bool) {
         if currentTime() == lastTime {
-//            print(currentTime() + ":" + lastTime)
+//            print(currentTime() + ":" + lastTime)print
             return
         } else if bypass || currentTime() != lastTime {
             lastTime = currentTime()
@@ -23,6 +23,7 @@ extension HomeViewController {
                 if let isSummer = isSummer {
                     guard !isSummer else {
                         //is currently long break/summer
+                        print("long break/summer")
                         self.getSummerMessage()
                         return
                     }
@@ -36,12 +37,14 @@ extension HomeViewController {
                 guard let schoolDay = schoolDay else {
                     self.dayInfo.text = ""
                     self.periodLabel.text = ""
+                    print("school day error")
                     return
                 }
                 print("school day retrieved")
                 
                 guard schoolDay.daySchedule != .weekend else {
                     self.isWeekend()
+                    print("weekend time!")
                     return
                 }
                 
@@ -50,9 +53,9 @@ extension HomeViewController {
                 DatabaseManager.shared.getSchoolSchedule(with: schoolDay) { (schedule) in
                     if let schedule = schedule {
                         print("congrats nick you are a great programmer lol")
-                        print(schedule.startTimes)
-                        print(schedule.endTimes)
-                        print(schedule.periodName)
+//                        print(schedule.startTimes)
+//                        print(schedule.endTimes)
+//                        print(schedule.periodName)
                         self.getTimeLeft(schedule: schedule)
                     } else {
                         self.dayInfo.text = ""
@@ -196,7 +199,7 @@ extension HomeViewController {
                     self.strokeAnimation.toValue = 1
                     self.periodLabel.text = "Long Break"
                     self.timeLeft.text = "00"
-                    self.dayInfo.text = "Long Break"
+                    self.dayInfo.text = msg
                     self.accesoryTextLabel.text = ""
                 }
             } else {
@@ -215,7 +218,6 @@ extension HomeViewController {
                 if isSummer {
                     completion(true)
                     self.getSummerMessage()
-                    
                 } else {
                     completion(false)
                 }
@@ -228,12 +230,21 @@ extension HomeViewController {
     
     //MARK: set day info
     func setDayInfo() {
+        
+        isSummer { (isSummer) in
+            guard let isSummer = isSummer else { return }
+            
+            if isSummer {
+                return
+            }
+        }
+        
         DatabaseManager.shared.getDayInfo { (dayInfo) in
             if let dayInfo = dayInfo {
                 self.dayInfo.text = dayInfo
             } else {
-                self.dayInfo.text = "..."
-                self.periodLabel.text = "none"
+                self.dayInfo.text = " "
+                self.periodLabel.text = " "
             }
         }
     }

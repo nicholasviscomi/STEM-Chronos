@@ -24,6 +24,14 @@ class DetailScheduleViewController: UIViewController {
         return field
     }()
     
+    fileprivate let scrollView: UIScrollView = {
+        let field = UIScrollView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.minimumZoomScale = 1.0
+        field.maximumZoomScale = 5.0
+        field.isScrollEnabled = true
+        return field
+    }()
     
     init(image: UIImage, imageTitle: String) {
         self.image = image
@@ -43,13 +51,22 @@ class DetailScheduleViewController: UIViewController {
         view.insertSubview(visualEffectView, at: 0)
         visualEffectView.frame = view.bounds
         
-        view.addSubview(bigPictureView)
+        view.addSubview(scrollView)
+        scrollView.delegate = self
+        scrollView.addSubview(bigPictureView)
         
         NSLayoutConstraint.activate([
-            bigPictureView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            bigPictureView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bigPictureView.widthAnchor.constraint(equalToConstant: view.width - 50),
-            bigPictureView.heightAnchor.constraint(equalToConstant: view.width - 100)
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            scrollView.heightAnchor.constraint(equalToConstant: view.frame.height),
+            scrollView.widthAnchor.constraint(equalToConstant: view.frame.width)
+        ])
+        
+        NSLayoutConstraint.activate([
+            bigPictureView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            bigPictureView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            bigPictureView.widthAnchor.constraint(equalToConstant: view.width),
+            bigPictureView.heightAnchor.constraint(equalToConstant: view.width)
         ])
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapBackground))
@@ -61,4 +78,10 @@ class DetailScheduleViewController: UIViewController {
     }
 
 
+}
+
+extension DetailScheduleViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return bigPictureView
+    }
 }

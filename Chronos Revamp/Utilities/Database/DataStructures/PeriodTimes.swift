@@ -52,21 +52,23 @@ class PeriodTimes {
         }
         
         group.notify(queue: .main) { [self] in
-            print("Period Times")
-            print(FSaltStart)
-            print(FSaltEnd)
-            print(FSaltName)
-            
-            print(JSaltStart)
-            print(JSaltEnd)
-            print(JSaltName)
-            
-            startTimes = setStartTimes()
-            endTimes = setEndTimes()
-            periodNames = setPeriodNames()
-            completion(true)
+//            if schoolDay.daySchedule == .databasePath {
+                print("Period Times")
+                print(FSaltStart)
+                print(FSaltEnd)
+                print(FSaltName)
+                
+                print(JSaltStart)
+                print(JSaltEnd)
+                print(JSaltName)
+                
+                startTimes = setStartTimes()
+                endTimes = setEndTimes()
+                periodNames = setPeriodNames()
+                completion(true)
+                return
+//            }
         }
-        
         
     }
     

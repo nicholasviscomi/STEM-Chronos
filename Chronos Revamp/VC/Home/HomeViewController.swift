@@ -16,10 +16,34 @@ enum Grade {
 
 class HomeViewController: UIViewController, GradeDelegate {
     
+    let topContainer: UIView = {
+        let field = UIView()
+        field.clipsToBounds = true
+        field.translatesAutoresizingMaskIntoConstraints = false
+        //maybe add in a background image
+        return field
+    }()
+    
+    let logoImage: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Mask Group (1)")
+        field.backgroundColor = .clear
+        return field
+    }()
+    
+    let topBGImage: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "topBG")
+        field.backgroundColor = .clear
+        return field
+    }()
+    
     let dayInfo: UILabel = {
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 22, weight: .regular)
+        field.font = .systemFont(ofSize: 20, weight: .regular)
         field.textColor = .white
         field.numberOfLines = 5
         field.textAlignment = .left
@@ -81,7 +105,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     public let periodLabel : UILabel = {
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 32, weight: .semibold)
+        field.font = .systemFont(ofSize: 30, weight: .semibold)
         field.textColor = .label
         field.textAlignment = .center
         field.text = ""
@@ -261,7 +285,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     }
     
     fileprivate func animatePulsatingLayer() {
-        pulse.toValue = 1.2
+        pulse.toValue = 1.15
         pulse.duration = 1.1
         pulse.timingFunction = CAMediaTimingFunction(name: .easeOut)
         pulse.autoreverses = true
@@ -325,12 +349,37 @@ class HomeViewController: UIViewController, GradeDelegate {
             periodLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             periodLabel.topAnchor.constraint(equalTo: accesoryTextLabel.bottomAnchor, constant: -10)
         ])
+
+        NSLayoutConstraint.activate([
+            topContainer.widthAnchor.constraint(equalToConstant: view.width),
+            topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top),
+            topContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topContainer.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
+        
+//        NSLayoutConstraint.activate([
+//            logoImage.leadingAnchor.constraint(equalTo: topContainer.leadingAnchor, constant: 10),
+//            logoImage.topAnchor.constraint(equalTo: topContainer.topAnchor, constant: 10 + view.safeAreaInsets.top),
+//            logoImage.widthAnchor.constraint(equalToConstant: view.width/3 - 10),
+//            logoImage.heightAnchor.constraint(equalToConstant: view.width/3 - 10)
+//        ])
+//
+//        NSLayoutConstraint.activate([
+//            topBGImage.leadingAnchor.constraint(equalTo: topContainer.leadingAnchor, constant: -20),
+//            topBGImage.topAnchor.constraint(equalTo: topContainer.topAnchor, constant: -20),
+//            topBGImage.widthAnchor.constraint(equalToConstant: view.width + 40),
+//            topBGImage.heightAnchor.constraint(equalToConstant: view.height/2.5 + view.safeAreaInsets.top + 30)
+//        ])
+        
+        //TODO: make a full programmatic and dynamic UI!!!!
         
         NSLayoutConstraint.activate([
             dayInfo.widthAnchor.constraint(equalToConstant: 235),
             dayInfo.heightAnchor.constraint(equalToConstant: 110),
             dayInfo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             dayInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24 + 110 + 6)
+//            dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+//            dayInfo.topAnchor.constraint(equalTo: view.topAnchor, constant: 10)
         ])
         
         NSLayoutConstraint.activate([
@@ -344,7 +393,7 @@ class HomeViewController: UIViewController, GradeDelegate {
             timeLabel.widthAnchor.constraint(equalToConstant: 271.5),
             timeLabel.heightAnchor.constraint(equalToConstant: 26),
             timeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 143),
-            timeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
+            timeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
         
         NSLayoutConstraint.activate([
@@ -367,11 +416,17 @@ class HomeViewController: UIViewController, GradeDelegate {
         view.addSubview(container)
         view.layer.addSublayer(pulsatingLayer)
         view.layer.addSublayer(shapeLayer)
+        
+        view.addSubview(topContainer)
+//        topContainer.addSubview(topBGImage)
+        topContainer.addSubview(dayInfo)
+        topContainer.addSubview(timeLabel)
+        topContainer.addSubview(dateLabel)
+        topContainer.addSubview(letterDay)
+//        topContainer.addSubview(logoImage)
+        
+        
         view.addSubview(timesContainer)
-        view.addSubview(dayInfo)
-        view.addSubview(timeLabel)
-        view.addSubview(dateLabel)
-        view.addSubview(letterDay)
         timesContainer.addSubview(timeLeft)
         timesContainer.addSubview(accesoryTextLabel)
         timesContainer.addSubview(periodLabel)

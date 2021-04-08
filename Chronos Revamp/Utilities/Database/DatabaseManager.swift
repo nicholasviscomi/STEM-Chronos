@@ -17,15 +17,17 @@ final class DatabaseManager {
 extension DatabaseManager {
     public func getSchoolDay(completion: @escaping (SchoolDay?) -> Void) {
         let currentDateString = currentDate()
-        
+        print("Curr date \(currentDateString)")
         database.child("\(currentDateString)").observe(.value) { (snapshot) in
             guard let data = snapshot.value as? [String: Any] else {
                 completion(nil)
+                print("could not get snapshot")
                 return
                 //["Letter day": ["info": " "], "Type of day": ["info": ""], "Day Schedule": ["info": "weekend"]]
             }
             
             guard let letterDay = data["Letter Day"] as? String, let typeOfDay = data["Day Info"] as? String, let rawDaySchedule = data["Day Schedule"] as? String else {
+                print("did not pass guard to check values")
                 completion(nil)
                 return
             }
@@ -91,14 +93,18 @@ extension DatabaseManager {
             return
         }
         let group = DispatchGroup()
-
         group.enter()
+        
         let periodTimes = PeriodTimes(schoolDay: schoolDay, grade: grade) { done in
             group.leave()
         }
         
         group.notify(queue: .main) {
-            guard let startTimes = periodTimes.startTimes, let endTimes = periodTimes.endTimes, let periodNames = periodTimes.periodNames else { print("you suck bruh"); return }
+            guard let startTimes = periodTimes.startTimes, let endTimes = periodTimes.endTimes, let periodNames = periodTimes.periodNames else {
+                print("you suck bruh")
+                return
+            }
+            
             print("DatabaseManager:")
             print(startTimes)
             print(endTimes)
