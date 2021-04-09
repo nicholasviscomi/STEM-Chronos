@@ -1,0 +1,16 @@
+1) Home view controller (first to be opened) calls get school day data from DatabaseFuncs.swift
+
+GetSchoolDayData (from: DatabaseFuncs.swift)
+    i. checks if the function has been called in the last minute
+    ii. if isSummer, get summer message and return
+    iii. Call DatabaseManager.shared.getSchoolDay
+    iv. check if it's the weekend
+    v. get school schedule with the previous schoolDay
+    vi. call getTimeLeft with the schedule to fill out the UI
+    
+getTimeLeft(schedule: Schedule)
+    --> Schedule has grade, start and end times, and period names
+    i. Loops through each period provided in the schedule and checks if the current time is between the period it is looping through
+    ii. if it is, it checks if the period is "before school" or "after school". If it is during the school day it fills out the UI with the time left and text from Firebase
+
+2) getSchoolDayData is called every 0.5 second with a timer to make sure that it updates right when the minute changes. This does not overload the processor becasue at the top of the function it checks if the function has already ran in the current minute

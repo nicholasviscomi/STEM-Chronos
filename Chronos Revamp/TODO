@@ -1,0 +1,19 @@
+[] Migrate from Storyboards
+[] Make the layout responsive
+[] Upload to App Store
+[] Create Widget
+    [] Widget has semantic colors
+    [] Clean simple design
+    [] Shows time left
+    [] Has clean loading view while waiting for DB response
+[] Create STEM Social
+    [] New tab in tab bar
+    [] Allow users to create posts
+        [] Text
+        [] Images
+        [] Links
+    [] Posts are completely chronological
+    [] Can "like" a post (find a cooler stem name for liking a post)
+    [] Show which posts are new or unseen
+    [] Filter cuss words
+    [] Allow people to create "Collab Rooms" where likeminded people can talk together
