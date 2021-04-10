@@ -31,6 +31,14 @@
 		7BCD468724E1EEED0004C86B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468224E1EEED0004C86B /* Helper.swift */; };
 		7BCD468A24E1EEFE0004C86B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */; };
 		7BCD468B24E1EEFE0004C86B /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */; };
+		7BCEAA35262263D50037DBAD /* SystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA34262263D50037DBAD /* SystemSmall.swift */; };
+		7BCEAA39262263E10037DBAD /* SystemMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA38262263E10037DBAD /* SystemMedium.swift */; };
+		7BCEAA3D262263EB0037DBAD /* SystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */; };
+		7BCEAA412622645D0037DBAD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA402622645D0037DBAD /* DataModel.swift */; };
+		7BCEAA46262264F00037DBAD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA402622645D0037DBAD /* DataModel.swift */; };
+		7BCEAA492622659E0037DBAD /* SystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA34262263D50037DBAD /* SystemSmall.swift */; };
+		7BCEAA54262266830037DBAD /* SystemMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA38262263E10037DBAD /* SystemMedium.swift */; };
+		7BCEAA5A262266920037DBAD /* SystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */; };
 		7BD094A325C4780500B7E903 /* GradeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD094A225C4780500B7E903 /* GradeDelegate.swift */; };
 		7BF2E606261F6497001F17C3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF2E605261F6497001F17C3 /* WidgetKit.framework */; };
 		7BF2E608261F6497001F17C3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF2E607261F6497001F17C3 /* SwiftUI.framework */; };
@@ -93,6 +101,10 @@
 		7BCD468224E1EEED0004C86B /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		7BCEAA34262263D50037DBAD /* SystemSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSmall.swift; sourceTree = "<group>"; };
+		7BCEAA38262263E10037DBAD /* SystemMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMedium.swift; sourceTree = "<group>"; };
+		7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLarge.swift; sourceTree = "<group>"; };
+		7BCEAA402622645D0037DBAD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		7BD094A225C4780500B7E903 /* GradeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeDelegate.swift; sourceTree = "<group>"; };
 		7BF2E604261F6497001F17C3 /* Chronos WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Chronos WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BF2E605261F6497001F17C3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -260,6 +272,16 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		7BCEAA2F262263B90037DBAD /* SystemViews */ = {
+			isa = PBXGroup;
+			children = (
+				7BCEAA34262263D50037DBAD /* SystemSmall.swift */,
+				7BCEAA38262263E10037DBAD /* SystemMedium.swift */,
+				7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */,
+			);
+			path = SystemViews;
+			sourceTree = "<group>";
+		};
 		7BD094A125C477D300B7E903 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +293,8 @@
 		7BF2E609261F6497001F17C3 /* Chronos Widget */ = {
 			isa = PBXGroup;
 			children = (
+				7BCEAA2F262263B90037DBAD /* SystemViews */,
+				7BCEAA402622645D0037DBAD /* DataModel.swift */,
 				7BF2E60A261F6497001F17C3 /* Chronos_Widget.swift */,
 				7BF2E60C261F6497001F17C3 /* Chronos_Widget.intentdefinition */,
 				7BF2E60D261F6499001F17C3 /* Assets.xcassets */,
@@ -420,15 +444,19 @@
 				7BF2E611261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */,
 				7BCD468A24E1EEFE0004C86B /* SettingsViewController.swift in Sources */,
 				7BCD468524E1EEED0004C86B /* Times.swift in Sources */,
+				7BCEAA35262263D50037DBAD /* SystemSmall.swift in Sources */,
 				7BCD468724E1EEED0004C86B /* Helper.swift in Sources */,
 				7BC00C8024F1FD470095BF61 /* DetailScheduleViewController.swift in Sources */,
 				7B66B27C24E760A5004DD70B /* GradeSelectionViewController.swift in Sources */,
 				7B06564624E868BD005134E4 /* DatabaseManager.swift in Sources */,
 				7B0586F924E0E2EC0053DD27 /* AppDelegate.swift in Sources */,
+				7BCEAA3D262263EB0037DBAD /* SystemLarge.swift in Sources */,
 				7B6167C924EC717F00B7AA73 /* PeriodTimes.swift in Sources */,
+				7BCEAA39262263E10037DBAD /* SystemMedium.swift in Sources */,
 				7BCD468B24E1EEFE0004C86B /* ScheduleViewController.swift in Sources */,
 				7B06564B24E87294005134E4 /* Schedule.swift in Sources */,
 				7B0586FB24E0E2EC0053DD27 /* SceneDelegate.swift in Sources */,
+				7BCEAA412622645D0037DBAD /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +466,10 @@
 			files = (
 				7BF2E60B261F6497001F17C3 /* Chronos_Widget.swift in Sources */,
 				7BF2E610261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */,
+				7BCEAA492622659E0037DBAD /* SystemSmall.swift in Sources */,
+				7BCEAA46262264F00037DBAD /* DataModel.swift in Sources */,
+				7BCEAA5A262266920037DBAD /* SystemLarge.swift in Sources */,
+				7BCEAA54262266830037DBAD /* SystemMedium.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +554,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -577,7 +609,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

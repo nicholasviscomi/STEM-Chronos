@@ -11,12 +11,14 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    typealias Entry = SimpleEntry
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: DataModel())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+        let entry = SimpleEntry(date: Date(), configuration: configuration, model: DataModel())
         completion(entry)
     }
 
@@ -27,7 +29,7 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let entry = SimpleEntry(date: entryDate, configuration: configuration, model: DataModel())
             entries.append(entry)
         }
 
@@ -39,13 +41,24 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let model: DataModel
 }
 
 struct Chronos_WidgetEntryView : View {
     var entry: Provider.Entry
 
+    @Environment(\.widgetFamily) var family
     var body: some View {
-        Text(entry.date, style: .time)
+        switch family {
+        case .systemSmall:
+            SystemSmall()
+        case .systemMedium:
+            SystemMedium()
+        case .systemLarge:
+            SystemLarge()
+        default:
+            SystemSmall()
+        }
     }
 }
 
@@ -57,14 +70,14 @@ struct Chronos_Widget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             Chronos_WidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("STEM Chronos")
+        .description("See the time left in the current period at a glance")
     }
 }
 
 struct Chronos_Widget_Previews: PreviewProvider {
     static var previews: some View {
-        Chronos_WidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        Chronos_WidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: DataModel()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

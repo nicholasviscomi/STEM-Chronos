@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    let dayInfo: UILabel = {
+    let dayInfo: UILabel = { //is the custon message from firebase that changes daily
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 20, weight: .regular)
@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    let timeLabel: UILabel = {
+    let timeLabel: UILabel = { //shows the time
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .white
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    let dateLabel: UILabel = {
+    let dateLabel: UILabel = {// shows the date
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .black
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    let letterDay: UILabel = {
+    let letterDay: UILabel = { //shows the letter day
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .black
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let timeLeft: UILabel = {
+    public let timeLeft: UILabel = { //shows the numerical time left
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 100, weight: .medium)
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let accesoryTextLabel : UILabel = {
+    public let accesoryTextLabel: UILabel = { //minutes left time label
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 28, weight: .light)
@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let periodLabel : UILabel = {
+    public let periodLabel : UILabel = { //can say the period name (i.e. lunch, 5th period, advisory) or say it's break
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 30, weight: .semibold)
@@ -112,7 +112,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let messageLabel : UILabel = {
+    public let messageLabel : UILabel = { // currently unused
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 24, weight: .regular)

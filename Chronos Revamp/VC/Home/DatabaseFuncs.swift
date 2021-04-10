@@ -197,10 +197,10 @@ extension HomeViewController {
                 DispatchQueue.main.async {
                     self.messageLabel.text = msg
                     self.strokeAnimation.toValue = 1
-                    self.periodLabel.text = "Long Break"
+                    self.periodLabel.text = "Break"
                     self.timeLeft.text = "00"
                     self.dayInfo.text = msg
-                    self.accesoryTextLabel.text = ""
+//                    self.accesoryTextLabel.text = ""
                 }
             } else {
                 print("couldnt get message")
