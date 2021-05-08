@@ -15,6 +15,11 @@ final class DatabaseManager {
 }
 
 extension DatabaseManager {
+    
+    //######################################################################################
+    //MAIN DB FUNCS
+    //######################################################################################
+    
     public func getSchoolDay(completion: @escaping (SchoolDay?) -> Void) {
         let currentDateString = currentDate()
         print("Curr date \(currentDateString)")
@@ -168,9 +173,24 @@ extension DatabaseManager {
         }
         
     }
-
     
     public func isWeekend() {
         //MARK: fill out this with weekend information
+    }
+    
+    //######################################################################################
+    //SETTINGS DB FUNCS
+    //######################################################################################
+    
+    public func getLinksFromDatabase(completion: @escaping ([String: String]?) -> Void) {
+        database.child("Links").observeSingleEvent(of: .value) { (snapshot) in
+            guard let data = snapshot.value as? [String: String] else {
+                print("failure obtianing the links")
+                completion(nil)
+                return
+            }
+            print(data)
+            completion(data)
+        }
     }
 }

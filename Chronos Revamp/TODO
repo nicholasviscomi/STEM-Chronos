@@ -1,3 +1,5 @@
+[+] Fix the day info and make it show up (wasn't calling setDayInfo)
+[+] Make the links on Settings page be retrieved from database
 [] Migrate from Storyboards
 [] Make the layout responsive
 [] Upload to App Store

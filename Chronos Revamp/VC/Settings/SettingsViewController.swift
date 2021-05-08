@@ -22,6 +22,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var grade: String = ""
     let defaults = UserDefaults.standard
     
+    var linkData = [String:String]()
+    var links = [String]()
+    let group = DispatchGroup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         timeLabel.textColor = .white
@@ -40,6 +44,36 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         tableView.delegate = self
         tableView.dataSource = self
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getLinks()
+    }
+    
+    func getLinks() {
+        group.enter()
+        DatabaseManager.shared.getLinksFromDatabase { (data) in
+            guard let data = data else {
+                print("failure in calling getLink function")
+                return
+            }
+            self.linkData = data
+            self.group.leave()
+        }
+        
+        group.notify(queue: .main) { [self] in
+            var keys = [String]()
+            for (key, val) in linkData {
+                keys.append(key)
+                links.append(val)
+            }
+            sectionText.append(keys)
+            headers = ["Settings","Resources"]
+            print("Section Text \(sectionText)\nLinks: \(links)")
+            tableView.reloadData()
+        }
     }
     
     @IBAction func composeEmail(_ sender: UIButton) {
@@ -50,10 +84,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Table view data source
     //header of table view
-    let headers = ["Settings","Resources"]
+    var headers = [String]()//["Settings","Resources"]
     
     //words in rows
-    let sectionText = [["Change Grade"],["Full Calender","Dasd.org","Infinite Campus","Patch Notes"]]
+    var sectionText = [["Change Grade"]]//[["Change Grade"],["Full Calender","Dasd.org","Infinite Campus","Patch Notes"]]
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -91,20 +125,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if indexPath.section == 1 {
-            //open certian websites if a certain row is tapped
-            if rowIndex == 0 {
-                //open full calender
-                showSafari(websiteUrl: "https://www.dasd.org/Page/2#calendar1/20200305/month")
-            } else if rowIndex == 1 {
-                //open dasd.org
-                showSafari(websiteUrl: "https://www.dasd.org/Domain/4")
-            } else if rowIndex == 2 {
-                //open Infinite Campus
-                showSafari(websiteUrl: "https://campus.dasd.org/campus/portal/parents/downingtown.jsp")
-            } else if rowIndex == 3 {
-                //open patch notes
-                showSafari(websiteUrl: "https://docs.google.com/document/d/10qeoGjsGxCQrWGI_B3dlRDjLWEa3pcWSfrtoql6bDVM/edit?usp=sharing")
-            }
+            showSafari(websiteUrl: links[indexPath.row])
+//            //open certian websites if a certain row is tapped
+//            if rowIndex == 0 {
+//                //open full calender
+//                showSafari(websiteUrl: "https://www.dasd.org/Page/2#calendar1/20200305/month")
+//            } else if rowIndex == 1 {
+//                //open dasd.org
+//                showSafari(websiteUrl: "https://www.dasd.org/Domain/4")
+//            } else if rowIndex == 2 {
+//                //open Infinite Campus
+//                showSafari(websiteUrl: "https://campus.dasd.org/campus/portal/parents/downingtown.jsp")
+//            } else if rowIndex == 3 {
+//                //open patch notes
+//                showSafari(websiteUrl: "https://docs.google.com/document/d/10qeoGjsGxCQrWGI_B3dlRDjLWEa3pcWSfrtoql6bDVM/edit?usp=sharing")
+//            }
         }
         
         if indexPath.section == 0 {

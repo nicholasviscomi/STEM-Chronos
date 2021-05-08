@@ -1,0 +1,18 @@
+[+] Weekend
+[+] Summer (do not create a tree for the current day if it IS summer)
+[] Time left
+    [+] After school
+    [+] Before school
+    [+] regular (has been working well in school)
+    [+] 2hr early (been working pretty well. No complaints)
+    [] 2hr delay
+    [] Events
+    [] Custom schedule
+    
+
+    
+Bugs:
+    Weekend will override the isSummer, but summer overrides any of the other day types
+    Weekend does not show a letter day; Summer does show a letter day
+    [Solution: do not have a tree for the current day if it is summer because any data for the current day makes it go wonky
+    mode]

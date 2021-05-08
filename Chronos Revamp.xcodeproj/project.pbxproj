@@ -23,6 +23,7 @@
 		7B66B27C24E760A5004DD70B /* GradeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */; };
 		7B937F7B261FE4AD007713CA /* DesignFlow in Resources */ = {isa = PBXBuildFile; fileRef = 7B937F7A261FE4AD007713CA /* DesignFlow */; };
 		7B937F7F261FE889007713CA /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 7B937F7E261FE889007713CA /* TODO */; };
+		7B9EC01426470D7700862643 /* Tests in Resources */ = {isa = PBXBuildFile; fileRef = 7B9EC01326470D7700862643 /* Tests */; };
 		7BAEA83425C1E1BA00695920 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEA83325C1E1BA00695920 /* CacheManager.swift */; };
 		7BC00C8024F1FD470095BF61 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */; };
 		7BCD467C24E1EED60004C86B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD467B24E1EED60004C86B /* HomeViewController.swift */; };
@@ -93,6 +94,7 @@
 		7B66B27B24E760A5004DD70B /* GradeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSelectionViewController.swift; sourceTree = "<group>"; };
 		7B937F7A261FE4AD007713CA /* DesignFlow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DesignFlow; sourceTree = "<group>"; };
 		7B937F7E261FE889007713CA /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		7B9EC01326470D7700862643 /* Tests */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests; sourceTree = "<group>"; };
 		7BAEA83325C1E1BA00695920 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewController.swift; sourceTree = "<group>"; };
 		7BCD467B24E1EED60004C86B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				7B937F7E261FE889007713CA /* TODO */,
+				7B9EC01326470D7700862643 /* Tests */,
 				7B937F7A261FE4AD007713CA /* DesignFlow */,
 				7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */,
 				7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */,
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B937F7F261FE889007713CA /* TODO in Resources */,
+				7B9EC01426470D7700862643 /* Tests in Resources */,
 				7B937F7B261FE4AD007713CA /* DesignFlow in Resources */,
 				7B05870524E0E2F10053DD27 /* LaunchScreen.storyboard in Resources */,
 				7B05870D24E0E3BC0053DD27 /* GoogleService-Info.plist in Resources */,

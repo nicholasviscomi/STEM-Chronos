@@ -33,7 +33,7 @@ extension HomeViewController {
                 }
             }
             
-            DatabaseManager.shared.getSchoolDay { (schoolDay) in
+            DatabaseManager.shared.getSchoolDay { [self] (schoolDay) in
                 guard let schoolDay = schoolDay else {
                     self.dayInfo.text = ""
                     self.periodLabel.text = ""
@@ -50,6 +50,8 @@ extension HomeViewController {
                 
                 self.letterDay.text = schoolDay.letterDay
                 
+                setDayInfo()
+                
                 DatabaseManager.shared.getSchoolSchedule(with: schoolDay) { (schedule) in
                     if let schedule = schedule {
                         print("congrats nick you are a great programmer lol")
@@ -63,6 +65,7 @@ extension HomeViewController {
                         print("no schedule")
                     }
                 }
+                
             }
         }
     }
@@ -178,8 +181,9 @@ extension HomeViewController {
                     self.strokeAnimation.toValue = 1
                     self.periodLabel.text = "Weekend"
                     self.timeLeft.text = "00"
-                    self.accesoryTextLabel.text = ""
+//                    self.accesoryTextLabel.text = ""
                     self.dayInfo.text = msg
+                    self.letterDay.text = ""
                 }
             } else {
                 print("couldnt get message")
@@ -233,7 +237,6 @@ extension HomeViewController {
         
         isSummer { (isSummer) in
             guard let isSummer = isSummer else { return }
-            
             if isSummer {
                 return
             }
@@ -243,6 +246,7 @@ extension HomeViewController {
             if let dayInfo = dayInfo {
                 self.dayInfo.text = dayInfo
             } else {
+                print("failed to get day info")
                 self.dayInfo.text = " "
                 self.periodLabel.text = " "
             }

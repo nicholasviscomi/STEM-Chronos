@@ -189,7 +189,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         setupMeter()
         
         //display day info
-        //will no longer be called right away because it causes a quick change between day info and before/after school message
+        //MARK: will no longer be called right away because it causes a quick change between day info and before/after school message
 //        setDayInfo()
         
         //get data about the day from Firebase and fill out the UI
