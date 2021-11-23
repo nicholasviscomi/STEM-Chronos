@@ -16,11 +16,12 @@ enum Grade {
 
 class HomeViewController: UIViewController, GradeDelegate {
     
-    let topContainer: UIView = {
+    let topContainer: UIView = { //container for top of the screen
         let field = UIView()
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
         //maybe add in a background image
+//        field.backgroundColor = .systemGreen
         return field
     }()
     
@@ -32,11 +33,20 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    let topBGImage: UIImageView = {
+    let topYellowBackground: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.image = UIImage(named: "topBG")
+        field.image = UIImage(named: "Vector 2-1")
         field.backgroundColor = .clear
+        field.contentMode = .scaleToFill
+        return field
+    }()
+    
+    let topPurpleBackground: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Rectangle 12")
+        field.contentMode = .scaleToFill
         return field
     }()
     
@@ -92,7 +102,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let accesoryTextLabel: UILabel = { //minutes left time label
+    public let minutesLeftLabel: UILabel = { //minutes left time label
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 28, weight: .light)
@@ -102,7 +112,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let periodLabel : UILabel = { //can say the period name (i.e. lunch, 5th period, advisory) or say it's break
+    public let periodLabel : UILabel = { //says the period name (i.e. lunch, 5th period, advisory)
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 30, weight: .semibold)
@@ -112,7 +122,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         return field
     }()
     
-    public let messageLabel : UILabel = { // currently unused
+    public let messageLabel : UILabel = { //currently unused
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 24, weight: .regular)
@@ -135,18 +145,20 @@ class HomeViewController: UIViewController, GradeDelegate {
     let shapeLayer = CAShapeLayer()
     let pulsatingLayer = CAShapeLayer()
     
-    let container : UIView = {
+    let bottomContainer : UIView = { //contianer for the bottom of the view
         let field = UIView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.clipsToBounds = false
+//        field.backgroundColor = .systemOrange
         return field
     }()
     
+    //contianer for the time left stuff
     let timesContainer : UIView = {
         let field = UIView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.clipsToBounds = false
-        //        field.backgroundColor = .systemRed
+        field.backgroundColor = .systemRed
         //        field.alpha = 0.3
         return field
     }()
@@ -166,6 +178,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     //MARK: View did load
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }//end view did load
     
     override func viewDidAppear(_ animated: Bool) {
@@ -174,7 +187,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         configureViews()
         
         //set the layout of the subviews
-        layoutViews()
+        setConstraints()
         
         //sef a refrence to database so data can be called
         ref = Database.database().reference()
@@ -183,15 +196,11 @@ class HomeViewController: UIViewController, GradeDelegate {
         _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         //check if open for first time
-        checkIfOpenedForFirstTime()
+        wasOpenedForFirstTime()
         
         //swtup the main time left meter
         setupMeter()
-        
-        //display day info
-        //MARK: will no longer be called right away because it causes a quick change between day info and before/after school message
-//        setDayInfo()
-        
+                
         //get data about the day from Firebase and fill out the UI
         getSchoolDayData(true)
         
@@ -204,12 +213,11 @@ class HomeViewController: UIViewController, GradeDelegate {
         //set the colors of the text inside the circle to be .label
         //MARK: the basic schedules should be hardcoded but there should be the option for a new schedule in the database. Under day schedule, if the value it finds is not one of the base values, it should take the value it gets and use it as the database path for the schedule
         configureViews()
-        layoutViews()
+        setConstraints()
         setupMeter()
     }
     
-    
-    fileprivate func checkIfOpenedForFirstTime() {
+    fileprivate func wasOpenedForFirstTime() {
         let hasOpenedBefore = defaults.bool(forKey: UDKeys.firstTimeOpening)
         
         if !hasOpenedBefore {
@@ -261,8 +269,9 @@ class HomeViewController: UIViewController, GradeDelegate {
         shapeLayer.lineWidth = 15
         shapeLayer.fillColor = UIColor.secondarySystemBackground.cgColor
         shapeLayer.lineCap = .round
-        let containerHeight = view.height - 310 - view.safeAreaInsets.bottom - view.safeAreaInsets.top
-        shapeLayer.position = CGPoint(x: view.center.x, y: view.safeAreaInsets.top + 310 + containerHeight/2 - 15)
+        
+        let bottomContainerHeight = view.height*2/3
+        shapeLayer.position = CGPoint(x: view.center.x, y: view.height - bottomContainerHeight/2)
         
         pulsatingLayer.path = circularPath.cgPath
         pulsatingLayer.strokeColor = UIColor.label.cgColor
@@ -314,127 +323,112 @@ class HomeViewController: UIViewController, GradeDelegate {
     }//end update time
     
     
-    private func layoutViews() {
+    private func setConstraints() {
         
-        NSLayoutConstraint.activate([
-            container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            container.widthAnchor.constraint(equalToConstant: view.width),
-            container.heightAnchor.constraint(equalToConstant: view.height - 310 - view.safeAreaInsets.bottom - view.safeAreaInsets.top),
-            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
-        
-        NSLayoutConstraint.activate([
-            timesContainer.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            timesContainer.widthAnchor.constraint(equalToConstant: view.width - 140 - 7.5 - 20),
-            timesContainer.heightAnchor.constraint(equalToConstant: view.width - 140 - 7.5 - 20),
-            timesContainer.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -15)
-        ])
-        
-        NSLayoutConstraint.activate([
-            timeLeft.centerXAnchor.constraint(equalTo: timesContainer.centerXAnchor),
-            //            timeLeft.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -70),
-            timeLeft.heightAnchor.constraint(equalToConstant: (view.width - 140 - 7.5 - 20)/2),
-            timeLeft.widthAnchor.constraint(equalToConstant: (view.width - 140 - 7.5 - 20) - 40),
-            timeLeft.topAnchor.constraint(equalTo: timesContainer.topAnchor, constant: 10)
-        ])
-        
-        NSLayoutConstraint.activate([
-            accesoryTextLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            accesoryTextLabel.widthAnchor.constraint(equalToConstant: 200),
-            accesoryTextLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            accesoryTextLabel.topAnchor.constraint(equalTo: timesContainer.centerYAnchor, constant: -5)
-        ])
-        
-        NSLayoutConstraint.activate([
-            periodLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            periodLabel.topAnchor.constraint(equalTo: accesoryTextLabel.bottomAnchor, constant: -10)
-        ])
-
+        //Assemble top container
         NSLayoutConstraint.activate([
             topContainer.widthAnchor.constraint(equalToConstant: view.width),
-            topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top),
+            topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
             topContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             topContainer.topAnchor.constraint(equalTo: view.topAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            topYellowBackground.topAnchor.constraint(equalTo: topContainer.topAnchor),
+            topYellowBackground.bottomAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            topYellowBackground.leftAnchor.constraint(equalTo: topContainer.leftAnchor),
+            topYellowBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor)
+        ])
+        
+        let topCHeight = view.height/3 + view.safeAreaInsets.top + (view.height/13)
+        NSLayoutConstraint.activate([
+            topPurpleBackground.topAnchor.constraint(equalTo: topYellowBackground.topAnchor),
+            topPurpleBackground.leftAnchor.constraint(equalTo: topYellowBackground.leftAnchor),
+            topPurpleBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor),
+            topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 20)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+        ])
+        
+        NSLayoutConstraint.activate([
+            dayInfo.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 20),
+            dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            dayInfo.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            timeLabel.leadingAnchor.constraint(equalTo: logoImage.leadingAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            dateLabel.topAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            letterDay.centerXAnchor.constraint(equalTo: dateLabel.trailingAnchor),
+            letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -40)
+        ])
+        
+        //Assemble Bottom Container
+        NSLayoutConstraint.activate([
+            bottomContainer.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            bottomContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            bottomContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            bottomContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
 //        NSLayoutConstraint.activate([
-//            logoImage.leadingAnchor.constraint(equalTo: topContainer.leadingAnchor, constant: 10),
-//            logoImage.topAnchor.constraint(equalTo: topContainer.topAnchor, constant: 10 + view.safeAreaInsets.top),
-//            logoImage.widthAnchor.constraint(equalToConstant: view.width/3 - 10),
-//            logoImage.heightAnchor.constraint(equalToConstant: view.width/3 - 10)
-//        ])
-//
-//        NSLayoutConstraint.activate([
-//            topBGImage.leadingAnchor.constraint(equalTo: topContainer.leadingAnchor, constant: -20),
-//            topBGImage.topAnchor.constraint(equalTo: topContainer.topAnchor, constant: -20),
-//            topBGImage.widthAnchor.constraint(equalToConstant: view.width + 40),
-//            topBGImage.heightAnchor.constraint(equalToConstant: view.height/2.5 + view.safeAreaInsets.top + 30)
+//            timesContainer.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
+//            timesContainer.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor),
+//            timesContainer.widthAnchor.constraint(equalToConstant: view.width - (view.width * 0.1)),
+//            timesContainer.heightAnchor.constraint(equalToConstant: bottomContainer.height - (bottomContainer.height * 0.2))
 //        ])
         
-        //TODO: make a full programmatic and dynamic UI!!!!
-        
         NSLayoutConstraint.activate([
-            dayInfo.widthAnchor.constraint(equalToConstant: 235),
-            dayInfo.heightAnchor.constraint(equalToConstant: 110),
-            dayInfo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-            dayInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24 + 110 + 6)
-//            dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//            dayInfo.topAnchor.constraint(equalTo: view.topAnchor, constant: 10)
+            timeLeft.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
+            timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 20))
         ])
         
         NSLayoutConstraint.activate([
-            letterDay.widthAnchor.constraint(equalToConstant: 67),
-            letterDay.heightAnchor.constraint(equalToConstant: 81),
-            letterDay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 211),
-            letterDay.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
+            minutesLeftLabel.topAnchor.constraint(equalTo: timeLeft.bottomAnchor, constant: -20),
+            minutesLeftLabel.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            timeLabel.widthAnchor.constraint(equalToConstant: 271.5),
-            timeLabel.heightAnchor.constraint(equalToConstant: 26),
-            timeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 143),
-            timeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            periodLabel.topAnchor.constraint(equalTo: minutesLeftLabel.bottomAnchor),
+            periodLabel.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor)
         ])
-        
-        NSLayoutConstraint.activate([
-            dateLabel.widthAnchor.constraint(equalToConstant: 360),
-            dateLabel.heightAnchor.constraint(equalToConstant: 26),
-            dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor, constant: 0),
-            dateLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0)
-        ])
-        
-        //MARK: other views are set after the shape layer so I can take advantage of the shapelayers properties
-        
-        //        NSLayoutConstraint.activate([
-        //            messageLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-        //            messageLabel.topAnchor.constraint(equalTo: periodLabel.bottomAnchor, constant: 60 )
-        //        ])
-        
     }
     
     private func configureViews() {
-        view.addSubview(container)
         view.layer.addSublayer(pulsatingLayer)
         view.layer.addSublayer(shapeLayer)
+        view.addSubview(bottomContainer)
+        bottomContainer.addSubview(timeLeft)
+        bottomContainer.addSubview(minutesLeftLabel)
+        bottomContainer.addSubview(periodLabel)
         
         view.addSubview(topContainer)
-//        topContainer.addSubview(topBGImage)
+        topContainer.addSubview(topYellowBackground)
+        topContainer.addSubview(topPurpleBackground)
+        topContainer.addSubview(logoImage)
         topContainer.addSubview(dayInfo)
         topContainer.addSubview(timeLabel)
         topContainer.addSubview(dateLabel)
         topContainer.addSubview(letterDay)
-//        topContainer.addSubview(logoImage)
         
         
-        view.addSubview(timesContainer)
-        timesContainer.addSubview(timeLeft)
-        timesContainer.addSubview(accesoryTextLabel)
-        timesContainer.addSubview(periodLabel)
-        //        view.addSubview(messageLabel)
         
+//        view.addSubview(timesContainer)
         
-        //        container.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
     }
     
 }
