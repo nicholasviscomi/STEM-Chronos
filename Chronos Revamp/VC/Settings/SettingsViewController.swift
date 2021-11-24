@@ -12,11 +12,75 @@ import SafariServices
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let topContainer: UIView = { //container for top of the screen
+        let field = UIView()
+        field.clipsToBounds = true
+        field.translatesAutoresizingMaskIntoConstraints = false
+        //maybe add in a background image
+//        field.backgroundColor = .systemGreen
+        return field
+    }()
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    let logoImage: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Mask Group (1)")
+        field.backgroundColor = .clear
+        return field
+    }()
+    
+    let topYellowBackground: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Vector 2-1")
+        field.backgroundColor = .clear
+        field.contentMode = .scaleToFill
+        return field
+    }()
+    
+    let topPurpleBackground: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Rectangle 12")
+        field.contentMode = .scaleToFill
+        return field
+    }()
+    
+    let dayInfo: UILabel = { //is the custon message from firebase that changes daily
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.font = .systemFont(ofSize: 20, weight: .regular)
+        field.textColor = .white
+        field.numberOfLines = 5
+        field.textAlignment = .left
+        return field
+    }()
+    
+    let timeLabel: UILabel = { //shows the time
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.textColor = .white
+        field.font = .systemFont(ofSize: 25, weight: .regular)
+        field.numberOfLines = 1
+        field.textAlignment = .left
+        return field
+    }()
+    
+    let dateLabel: UILabel = {// shows the date
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.textColor = .black
+        field.font = .systemFont(ofSize: 25, weight: .regular)
+        field.numberOfLines = 1
+        field.textAlignment = .left
+        return field
+    }()
 
+    fileprivate let tableView: UITableView = {
+        let field = UITableView()
+        
+        return field
+    }()
     
     var rowIndex: Int?
     var grade: String = ""
@@ -28,15 +92,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timeLabel.textColor = .white
-        timeLabel.font = .systemFont(ofSize: 25, weight: .regular)
-        timeLabel.numberOfLines = 1
-        timeLabel.textAlignment = .left
         
-        dateLabel.textColor = .black
-        dateLabel.font = .systemFont(ofSize: 25, weight: .regular)
-        dateLabel.numberOfLines = 1
-        dateLabel.textAlignment = .left
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addViews()
+        setConstraints()
         
         //constant time update
         _ = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
@@ -44,11 +106,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         tableView.delegate = self
         tableView.dataSource = self
-    
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         getLinks()
     }
     
@@ -196,6 +253,73 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         dateLabel.text = dateString
     }//end update time
    
+    fileprivate func setConstraints() {
+        
+        print("Schedule View Height: \(view.height)")
+        //Assemble top container
+        NSLayoutConstraint.activate([
+            topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
+            topContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            topContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            topContainer.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            topYellowBackground.topAnchor.constraint(equalTo: topContainer.topAnchor),
+            topYellowBackground.bottomAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            topYellowBackground.leftAnchor.constraint(equalTo: topContainer.leftAnchor),
+            topYellowBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor)
+        ])
+        
+        let topCHeight = view.height/3 + view.safeAreaInsets.top + (view.height/13)
+        NSLayoutConstraint.activate([
+            topPurpleBackground.topAnchor.constraint(equalTo: topYellowBackground.topAnchor),
+            topPurpleBackground.leftAnchor.constraint(equalTo: topYellowBackground.leftAnchor),
+            topPurpleBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor),
+            topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+        ])
+
+        NSLayoutConstraint.activate([
+            dayInfo.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 20),
+            dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            dayInfo.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            timeLabel.leadingAnchor.constraint(equalTo: logoImage.leadingAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+
+        NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            dateLabel.topAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+        
+        //Assemble bottom container
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+//            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
+    }
+    
+    fileprivate func addViews() {
+        view.addSubview(topContainer)
+        topContainer.addSubview(topYellowBackground)
+        topContainer.addSubview(topPurpleBackground)
+        topContainer.addSubview(logoImage)
+        topContainer.addSubview(dayInfo)
+        topContainer.addSubview(timeLabel)
+        topContainer.addSubview(dateLabel)
+    }
 
 }
 

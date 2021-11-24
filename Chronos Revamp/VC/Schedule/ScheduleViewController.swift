@@ -12,16 +12,8 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     //photos in the collection view
     let photos = ["JS regular", "FS regular", "JS 2hr early", "FS 2hr early","JS 2hr delay", "FS 2hr delay", "JS events", "FS events"]
-
-//    fileprivate let bigPictureView: UIImageView = {
-//        let field = UIImageView()
-//        field.translatesAutoresizingMaskIntoConstraints = false
-//        field.alpha = 0
-//        field.contentMode = .scaleAspectFit
-//        return field
-//    }()
     
-    fileprivate let topContainer: UIView = { //container for top of the screen
+    let topContainer: UIView = { //container for top of the screen
         let field = UIView()
         field.clipsToBounds = true
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +22,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    fileprivate let logoImage: UIImageView = {
+    let logoImage: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.image = UIImage(named: "Mask Group (1)")
@@ -38,7 +30,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    fileprivate let topYellowBackground: UIImageView = {
+    let topYellowBackground: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.image = UIImage(named: "Vector 2-1")
@@ -47,7 +39,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    fileprivate let topPurpleBackground: UIImageView = {
+    let topPurpleBackground: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.image = UIImage(named: "Rectangle 12")
@@ -55,7 +47,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    fileprivate let dayInfo: UILabel = {
+    let dayInfo: UILabel = { //is the custon message from firebase that changes daily
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = .systemFont(ofSize: 20, weight: .regular)
@@ -65,7 +57,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    fileprivate let timeLabel: UILabel = { //shows the time
+    let timeLabel: UILabel = { //shows the time
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .white
@@ -74,8 +66,8 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         field.textAlignment = .left
         return field
     }()
-
-    fileprivate let dateLabel: UILabel = {// shows the date
+    
+    let dateLabel: UILabel = {// shows the date
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .black
@@ -100,9 +92,11 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.addSubview(bigPictureView)
-//        view.bringSubviewToFront(bigPictureView)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         addViews()
         setConstraints()
         
@@ -112,12 +106,13 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        NSLayoutConstraint.activate([
-//            bigPictureView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            bigPictureView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            bigPictureView.widthAnchor.constraint(equalToConstant: view.width - 100),
-//            bigPictureView.heightAnchor.constraint(equalToConstant: view.width - 100)
-//        ])
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        //set the colors of the text inside the circle to be .label
+        //MARK: the basic schedules should be hardcoded but there should be the option for a new schedule in the database. Under day schedule, if the value it finds is not one of the base values, it should take the value it gets and use it as the database path for the schedule
+        addViews()
+        setConstraints()
     }
     
     //update the time
@@ -159,11 +154,13 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     fileprivate func setConstraints() {
-        //Assemble top container (same as the homeVC)
+        
+        print("Schedule View Height: \(view.height)")
+        //Assemble top container
         NSLayoutConstraint.activate([
-            topContainer.widthAnchor.constraint(equalToConstant: view.width),
             topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
-            topContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            topContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
             topContainer.topAnchor.constraint(equalTo: view.topAnchor)
         ])
         
@@ -182,31 +179,30 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
             topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 20)
         ])
         
-        
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
             logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
             logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
         ])
-        
+
         NSLayoutConstraint.activate([
             dayInfo.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 20),
             dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             dayInfo.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             timeLabel.leadingAnchor.constraint(equalTo: logoImage.leadingAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
         ])
-        
+
         NSLayoutConstraint.activate([
             dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
             dateLabel.topAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
         ])
         
-//        //Assemble bottom container
+        //Assemble bottom container
 //        NSLayoutConstraint.activate([
 //            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
 //            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),

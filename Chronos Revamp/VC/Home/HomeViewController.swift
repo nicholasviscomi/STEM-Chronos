@@ -325,6 +325,8 @@ class HomeViewController: UIViewController, GradeDelegate {
     
     private func setConstraints() {
         
+        print("Home View Height: \(view.height)")
+        
         //Assemble top container
         NSLayoutConstraint.activate([
             topContainer.widthAnchor.constraint(equalToConstant: view.width),
@@ -355,23 +357,23 @@ class HomeViewController: UIViewController, GradeDelegate {
             logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
             logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
         ])
-        
+
         NSLayoutConstraint.activate([
             dayInfo.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 20),
             dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             dayInfo.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             timeLabel.leadingAnchor.constraint(equalTo: logoImage.leadingAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
         ])
-        
+
         NSLayoutConstraint.activate([
             dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
             dateLabel.topAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
         ])
-        
+
         NSLayoutConstraint.activate([
             letterDay.centerXAnchor.constraint(equalTo: dateLabel.trailingAnchor),
             letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -40)
@@ -384,24 +386,24 @@ class HomeViewController: UIViewController, GradeDelegate {
             bottomContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
             bottomContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+
 //        NSLayoutConstraint.activate([
 //            timesContainer.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
 //            timesContainer.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor),
 //            timesContainer.widthAnchor.constraint(equalToConstant: view.width - (view.width * 0.1)),
 //            timesContainer.heightAnchor.constraint(equalToConstant: bottomContainer.height - (bottomContainer.height * 0.2))
 //        ])
-        
+
         NSLayoutConstraint.activate([
             timeLeft.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
             timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 20))
         ])
-        
+
         NSLayoutConstraint.activate([
             minutesLeftLabel.topAnchor.constraint(equalTo: timeLeft.bottomAnchor, constant: -20),
             minutesLeftLabel.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             periodLabel.topAnchor.constraint(equalTo: minutesLeftLabel.bottomAnchor),
             periodLabel.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor)

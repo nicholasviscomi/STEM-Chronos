@@ -2,6 +2,7 @@
 [x] Make the links on Settings page be retrieved from database
 [] Migrate from Storyboards
     [] Keep the topcontainer the same but chane the view below it
+    [] MainVC does not conform to change grade protocol
     [x] Home VC
     [] Schedule VC
     [] Settings VC
