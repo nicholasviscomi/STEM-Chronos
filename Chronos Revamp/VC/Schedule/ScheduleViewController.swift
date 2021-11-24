@@ -13,36 +13,104 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     //photos in the collection view
     let photos = ["JS regular", "FS regular", "JS 2hr early", "FS 2hr early","JS 2hr delay", "FS 2hr delay", "JS events", "FS events"]
 
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+//    fileprivate let bigPictureView: UIImageView = {
+//        let field = UIImageView()
+//        field.translatesAutoresizingMaskIntoConstraints = false
+//        field.alpha = 0
+//        field.contentMode = .scaleAspectFit
+//        return field
+//    }()
     
-    fileprivate let bigPictureView: UIImageView = {
+    fileprivate let topContainer: UIView = { //container for top of the screen
+        let field = UIView()
+        field.clipsToBounds = true
+        field.translatesAutoresizingMaskIntoConstraints = false
+        //maybe add in a background image
+//        field.backgroundColor = .systemGreen
+        return field
+    }()
+    
+    fileprivate let logoImage: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.alpha = 0
-        field.contentMode = .scaleAspectFit
+        field.image = UIImage(named: "Mask Group (1)")
+        field.backgroundColor = .clear
+        return field
+    }()
+    
+    fileprivate let topYellowBackground: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Vector 2-1")
+        field.backgroundColor = .clear
+        field.contentMode = .scaleToFill
+        return field
+    }()
+    
+    fileprivate let topPurpleBackground: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.image = UIImage(named: "Rectangle 12")
+        field.contentMode = .scaleToFill
+        return field
+    }()
+    
+    fileprivate let dayInfo: UILabel = {
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.font = .systemFont(ofSize: 20, weight: .regular)
+        field.textColor = .white
+        field.numberOfLines = 5
+        field.textAlignment = .left
+        return field
+    }()
+    
+    fileprivate let timeLabel: UILabel = { //shows the time
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.textColor = .white
+        field.font = .systemFont(ofSize: 25, weight: .regular)
+        field.numberOfLines = 1
+        field.textAlignment = .left
         return field
     }()
 
+    fileprivate let dateLabel: UILabel = {// shows the date
+        let field = UILabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.textColor = .black
+        field.font = .systemFont(ofSize: 25, weight: .regular)
+        field.numberOfLines = 1
+        field.textAlignment = .left
+        return field
+    }()
+    
+    fileprivate let collectionView: UICollectionView = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 0 //between item spacing
+            let field = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            field.translatesAutoresizingMaskIntoConstraints = false
+            field.clipsToBounds = true
+            field.backgroundColor = .clear
+            field.register(ScheduleCell.self, forCellWithReuseIdentifier: "ScheduleCell")
+            return field
+        }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(bigPictureView)
-        view.bringSubviewToFront(bigPictureView)
-        timeLabel.textColor = .white
-        timeLabel.font = .systemFont(ofSize: 25, weight: .regular)
-        timeLabel.numberOfLines = 1
-        timeLabel.textAlignment = .left
+//        view.addSubview(bigPictureView)
+//        view.bringSubviewToFront(bigPictureView)
         
-        dateLabel.textColor = .black
-        dateLabel.font = .systemFont(ofSize: 25, weight: .regular)
-        dateLabel.numberOfLines = 1
-        dateLabel.textAlignment = .left
+        addViews()
+        setConstraints()
+        
         //constant time update
         _ = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
-        collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.dataSource = self
         
 //        NSLayoutConstraint.activate([
 //            bigPictureView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -78,11 +146,8 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         //set cells
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gemCell", for: indexPath) as! ScheduleCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
         cell.setCell(imageName: photos[indexPath.row])
-        
-        
         return cell
     }
     
@@ -91,8 +156,73 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         let vc = DetailScheduleViewController(image: UIImage(named: photos[indexPath.row])!, imageTitle: photos[indexPath.row])
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true)
-
+    }
+    
+    fileprivate func setConstraints() {
+        //Assemble top container (same as the homeVC)
+        NSLayoutConstraint.activate([
+            topContainer.widthAnchor.constraint(equalToConstant: view.width),
+            topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
+            topContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topContainer.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
         
+        NSLayoutConstraint.activate([
+            topYellowBackground.topAnchor.constraint(equalTo: topContainer.topAnchor),
+            topYellowBackground.bottomAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            topYellowBackground.leftAnchor.constraint(equalTo: topContainer.leftAnchor),
+            topYellowBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor)
+        ])
+        
+        let topCHeight = view.height/3 + view.safeAreaInsets.top + (view.height/13)
+        NSLayoutConstraint.activate([
+            topPurpleBackground.topAnchor.constraint(equalTo: topYellowBackground.topAnchor),
+            topPurpleBackground.leftAnchor.constraint(equalTo: topYellowBackground.leftAnchor),
+            topPurpleBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor),
+            topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 20)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+        ])
+        
+        NSLayoutConstraint.activate([
+            dayInfo.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 20),
+            dayInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            dayInfo.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            timeLabel.leadingAnchor.constraint(equalTo: logoImage.leadingAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            dateLabel.topAnchor.constraint(equalTo: topPurpleBackground.bottomAnchor),
+        ])
+        
+//        //Assemble bottom container
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+//            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
+    }
+    
+    fileprivate func addViews() {
+        view.addSubview(topContainer)
+        topContainer.addSubview(topYellowBackground)
+        topContainer.addSubview(topPurpleBackground)
+        topContainer.addSubview(logoImage)
+        topContainer.addSubview(dayInfo)
+        topContainer.addSubview(timeLabel)
+        topContainer.addSubview(dateLabel)
     }
     
 }

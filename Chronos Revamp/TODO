@@ -1,9 +1,8 @@
-[+] Fix the day info and make it show up (wasn't calling setDayInfo)
-[+] Make the links on Settings page be retrieved from database
+[x] Fix the day info and make it show up (wasn't calling setDayInfo)
+[x] Make the links on Settings page be retrieved from database
 [] Migrate from Storyboards
-    [] Home VC
-        [] make containers for the top and bottom of the view
-        [] get rid of hardcoded values
+    [] Keep the topcontainer the same but chane the view below it
+    [x] Home VC
     [] Schedule VC
     [] Settings VC
 [] Make the layout responsive

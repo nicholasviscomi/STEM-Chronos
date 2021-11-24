@@ -184,7 +184,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //add subviews to main view
-        configureViews()
+        addViews()
         
         //set the layout of the subviews
         setConstraints()
@@ -212,7 +212,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         //set the colors of the text inside the circle to be .label
         //MARK: the basic schedules should be hardcoded but there should be the option for a new schedule in the database. Under day schedule, if the value it finds is not one of the base values, it should take the value it gets and use it as the database path for the schedule
-        configureViews()
+        addViews()
         setConstraints()
         setupMeter()
     }
@@ -408,7 +408,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         ])
     }
     
-    private func configureViews() {
+    private func addViews() {
         view.layer.addSublayer(pulsatingLayer)
         view.layer.addSublayer(shapeLayer)
         view.addSubview(bottomContainer)

@@ -10,7 +10,6 @@
 		0F1BEC5322A46B26BE779871 /* libPods-Chronos Revamp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7464F32C2C718CC560DDCDBA /* libPods-Chronos Revamp.a */; };
 		7B0586F924E0E2EC0053DD27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */; };
 		7B0586FB24E0E2EC0053DD27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */; };
-		7B05870024E0E2EC0053DD27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0586FE24E0E2EC0053DD27 /* Main.storyboard */; };
 		7B05870224E0E2F10053DD27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B05870124E0E2F10053DD27 /* Assets.xcassets */; };
 		7B05870524E0E2F10053DD27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B05870324E0E2F10053DD27 /* LaunchScreen.storyboard */; };
 		7B05870D24E0E3BC0053DD27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B05870C24E0E3BC0053DD27 /* GoogleService-Info.plist */; };
@@ -80,7 +79,6 @@
 		7B0586F524E0E2EC0053DD27 /* Stem Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stem Chronos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7B0586FF24E0E2EC0053DD27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B05870124E0E2F10053DD27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B05870424E0E2F10053DD27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B05870624E0E2F10053DD27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				7B06564724E86A8B005134E4 /* Utilities */,
 				7BCD468D24E1EFBB0004C86B /* VC */,
 				7BCD467D24E1EEED0004C86B /* Cells */,
-				7B0586FE24E0E2EC0053DD27 /* Main.storyboard */,
 				7B05870124E0E2F10053DD27 /* Assets.xcassets */,
 				7B05870324E0E2F10053DD27 /* LaunchScreen.storyboard */,
 				7B05870624E0E2F10053DD27 /* Info.plist */,
@@ -394,7 +391,6 @@
 				7B05870524E0E2F10053DD27 /* LaunchScreen.storyboard in Resources */,
 				7B05870D24E0E3BC0053DD27 /* GoogleService-Info.plist in Resources */,
 				7B05870224E0E2F10053DD27 /* Assets.xcassets in Resources */,
-				7B05870024E0E2EC0053DD27 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,14 +484,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7B0586FE24E0E2EC0053DD27 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7B0586FF24E0E2EC0053DD27 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7B05870324E0E2F10053DD27 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

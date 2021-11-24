@@ -10,9 +10,20 @@ import UIKit
 
 class ScheduleCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    fileprivate let imageView: UIImageView = {
+        let field = UIImageView()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
     
     func setCell(imageName:String) {
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+        ])
+        
         imageView.image = UIImage(named: imageName)
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
