@@ -13,10 +13,15 @@ class ScheduleCell: UICollectionViewCell {
     fileprivate let imageView: UIImageView = {
         let field = UIImageView()
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.layer.cornerRadius = 20
+        field.clipsToBounds = true
+        field.contentMode = .scaleAspectFit
         return field
     }()
     
     func setCell(imageName:String) {
+        contentView.addSubview(imageView)
+        
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -25,9 +30,6 @@ class ScheduleCell: UICollectionViewCell {
         ])
         
         imageView.image = UIImage(named: imageName)
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
     }
     
 }

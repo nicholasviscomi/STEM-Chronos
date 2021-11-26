@@ -78,7 +78,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     fileprivate let tableView: UITableView = {
         let field = UITableView()
-        
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return field
     }()
     
@@ -106,6 +107,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         tableView.delegate = self
         tableView.dataSource = self
+        
         getLinks()
     }
     
@@ -133,7 +135,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @IBAction func composeEmail(_ sender: UIButton) {
+    @objc func composeEmail(_ sender: UIButton) {
         //show the email view controller so they can send email to report bugs
         showMailComposer()
     }
@@ -150,19 +152,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //number of sections
         return headers.count
+//        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         //number of rows
         return sectionText[section].count
+//        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //set cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
         cell.textLabel?.text = sectionText[indexPath.section][indexPath.row]
+//        cell.textLabel?.text = "Please work"
 
         return cell
     }
@@ -171,6 +175,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //set header
         return headers[section]
+//        return "Title"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -232,7 +237,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let composer = MFMailComposeViewController()
         composer.mailComposeDelegate = self
         composer.setToRecipients(["stemchronos@gmail.com","nicholasviscomi@gmail.com"])
-        composer.setSubject("Bug/Problem/Suggestion for STEM Chronos")
+        composer.setSubject("Suggestion for STEM Chronos")
         
         present(composer, animated: true)
     }
@@ -303,12 +308,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         ])
         
         //Assemble bottom container
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
-//            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     fileprivate func addViews() {
@@ -319,6 +324,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         topContainer.addSubview(dayInfo)
         topContainer.addSubview(timeLabel)
         topContainer.addSubview(dateLabel)
+        
+        view.addSubview(tableView)
     }
 
 }

@@ -171,7 +171,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     
     let defaults = UserDefaults.standard
     
-    var dayData: Timer!
+    var dayDataTimer: Timer!
     
     var lastTime: String!
     
@@ -205,7 +205,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         getSchoolDayData(true)
         
         lastTime = currentTime()
-        dayData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(getSchoolDayData), userInfo: nil, repeats: true)
+        dayDataTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(getSchoolDayData), userInfo: nil, repeats: true)
         
     }
     

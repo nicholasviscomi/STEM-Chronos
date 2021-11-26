@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ScheduleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     //photos in the collection view
     let photos = ["JS regular", "FS regular", "JS 2hr early", "FS 2hr early","JS 2hr delay", "FS 2hr delay", "JS events", "FS events"]
@@ -50,10 +50,11 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     let dayInfo: UILabel = { //is the custon message from firebase that changes daily
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 20, weight: .regular)
+        field.font = .systemFont(ofSize: 30, weight: .regular)
         field.textColor = .white
         field.numberOfLines = 5
         field.textAlignment = .left
+        field.text = "Bell Schedules"
         return field
     }()
     
@@ -67,7 +68,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         return field
     }()
     
-    let dateLabel: UILabel = {// shows the date
+    let dateLabel: UILabel = { // shows the date
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.textColor = .black
@@ -78,17 +79,18 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     }()
     
     fileprivate let collectionView: UICollectionView = {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 0 //between item spacing
-            let field = UICollectionView(frame: .zero, collectionViewLayout: layout)
-            field.translatesAutoresizingMaskIntoConstraints = false
-            field.clipsToBounds = true
-            field.backgroundColor = .clear
-            field.register(ScheduleCell.self, forCellWithReuseIdentifier: "ScheduleCell")
-            return field
-        }()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0 //between item spacing
+        let field = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.clipsToBounds = true
+        field.backgroundColor = .clear
+        field.register(ScheduleCell.self, forCellWithReuseIdentifier: "ScheduleCell")
+//        field.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        return field
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,11 +103,10 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         setConstraints()
         
         //constant time update
-        _ = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 0.9, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -133,9 +134,8 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     }//end update time
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         //how many photos in the collection view
-        return photos.count
+        return 5
     }
         
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -143,6 +143,9 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         //set cells
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as! ScheduleCell
         cell.setCell(imageName: photos[indexPath.row])
+        
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+//        cell.backgroundColor = .systemRed
         return cell
     }
     
@@ -151,6 +154,10 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         let vc = DetailScheduleViewController(image: UIImage(named: photos[indexPath.row])!, imageTitle: photos[indexPath.row])
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.width-20, height: view.height/4)
     }
     
     fileprivate func setConstraints() {
@@ -203,12 +210,12 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         ])
         
         //Assemble bottom container
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
-//            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     fileprivate func addViews() {
@@ -219,6 +226,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         topContainer.addSubview(dayInfo)
         topContainer.addSubview(timeLabel)
         topContainer.addSubview(dateLabel)
+        view.addSubview(collectionView)
     }
     
 }
