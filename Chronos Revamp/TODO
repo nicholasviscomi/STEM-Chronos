@@ -1,18 +1,19 @@
 [x] Fix the day info and make it show up (wasn't calling setDayInfo)
 [x] Make the links on Settings page be retrieved from database
-[] Migrate from Storyboards
-    [] Keep the topcontainer the same but chane the view below it
-    [] MainVC does not conform to change grade protocol
+[x] Migrate from Storyboards
     [x] Home VC
-    [] Schedule VC
-    [] Settings VC
-[] Make the layout responsive
+    [x] Schedule VC
+    [x] Settings VC
+[x] Fix bug where the pulsatingLayer color shows up incorrectly until the theme is changed and reset
+[] Keep the topcontainer the same but change the view below it
 [] Upload to App Store
+
 [] Create Widget
     [] Widget has semantic colors
     [] Clean simple design
     [] Shows time left
     [] Has clean loading view while waiting for DB response
+    
 [] Create STEM Social
     [] New tab in tab bar
     [] Allow users to create posts

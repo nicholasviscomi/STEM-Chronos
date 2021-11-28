@@ -9,8 +9,6 @@
     [] Events
     [] Custom schedule
     
-
-    
 Bugs:
     Weekend will override the isSummer, but summer overrides any of the other day types
     Weekend does not show a letter day; Summer does show a letter day

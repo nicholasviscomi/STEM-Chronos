@@ -38,7 +38,7 @@ extension DatabaseManager {
             }
             
             var daySchedule: DaySchedule!
-            switch rawDaySchedule {
+            switch rawDaySchedule.lowercased() {
             case "2hr delay":
                 daySchedule = .twoHrDelay
                 break
@@ -109,11 +109,6 @@ extension DatabaseManager {
                 print("you suck bruh")
                 return
             }
-            
-            print("DatabaseManager:")
-            print(startTimes)
-            print(endTimes)
-            print(periodNames)
             
             let schedule = Schedule(grade: grade, startTimes: startTimes, endTimes: endTimes, periodName: periodNames)
             

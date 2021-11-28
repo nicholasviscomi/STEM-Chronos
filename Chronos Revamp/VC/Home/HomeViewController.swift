@@ -143,13 +143,12 @@ class HomeViewController: UIViewController, GradeDelegate {
     var fiveSevenLetterDays = ["C","G","K"]
     
     let shapeLayer = CAShapeLayer()
-    let pulsatingLayer = CAShapeLayer()
+    let pulsatingLayer = CAShapeLayer() //Circle behind the meter growing and shrinking
     
     let bottomContainer : UIView = { //contianer for the bottom of the view
         let field = UIView()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.clipsToBounds = false
-//        field.backgroundColor = .systemOrange
         return field
     }()
     
@@ -200,12 +199,15 @@ class HomeViewController: UIViewController, GradeDelegate {
         
         //swtup the main time left meter
         setupMeter()
-                
+        view.backgroundColor = .systemBackground
+        pulsatingLayer.strokeColor = UIColor.label.cgColor
+        pulsatingLayer.fillColor = UIColor.label.cgColor
+        
         //get data about the day from Firebase and fill out the UI
         getSchoolDayData(true)
         
         lastTime = currentTime()
-        dayDataTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(getSchoolDayData), userInfo: nil, repeats: true)
+        dayDataTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getSchoolDayData), userInfo: nil, repeats: true)
         
     }
     
@@ -215,6 +217,10 @@ class HomeViewController: UIViewController, GradeDelegate {
         addViews()
         setConstraints()
         setupMeter()
+        
+        view.backgroundColor = .systemBackground
+        pulsatingLayer.strokeColor = UIColor.label.cgColor
+        pulsatingLayer.fillColor = UIColor.label.cgColor
     }
     
     fileprivate func wasOpenedForFirstTime() {
@@ -261,13 +267,13 @@ class HomeViewController: UIViewController, GradeDelegate {
     let pulse = CABasicAnimation(keyPath: "transform.scale")
     
     fileprivate func setupMeter() {
-        //        let containerHeight = view.height - 310 - view.safeAreaInsets.bottom - view.safeAreaInsets.top
-        //        CGPoint(x: view.center.x, y: 335)
+//        let containerHeight = view.height - 310 - view.safeAreaInsets.bottom - view.safeAreaInsets.top
+//        CGPoint(x: view.center.x, y: 335)
         let circularPath = UIBezierPath(arcCenter: .zero, radius: (view.width - 140)/2, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = #colorLiteral(red: 1, green: 0.8705882353, blue: 0.0862745098, alpha: 1)
         shapeLayer.lineWidth = 15
-        shapeLayer.fillColor = UIColor.secondarySystemBackground.cgColor
+        shapeLayer.fillColor = UIColor.secondarySystemBackground.cgColor //shape behind the time left meter
         shapeLayer.lineCap = .round
         
         let bottomContainerHeight = view.height*2/3
@@ -325,8 +331,6 @@ class HomeViewController: UIViewController, GradeDelegate {
     
     private func setConstraints() {
         
-        print("Home View Height: \(view.height)")
-        
         //Assemble top container
         NSLayoutConstraint.activate([
             topContainer.widthAnchor.constraint(equalToConstant: view.width),
@@ -347,15 +351,14 @@ class HomeViewController: UIViewController, GradeDelegate {
             topPurpleBackground.topAnchor.constraint(equalTo: topYellowBackground.topAnchor),
             topPurpleBackground.leftAnchor.constraint(equalTo: topYellowBackground.leftAnchor),
             topPurpleBackground.rightAnchor.constraint(equalTo: topContainer.rightAnchor),
-            topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 20)
+            topPurpleBackground.heightAnchor.constraint(equalToConstant: topCHeight/2 + 30)
         ])
-        
         
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
-            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
-            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.3),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.3)
         ])
 
         NSLayoutConstraint.activate([
@@ -376,7 +379,7 @@ class HomeViewController: UIViewController, GradeDelegate {
 
         NSLayoutConstraint.activate([
             letterDay.centerXAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-            letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -40)
+            letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -30)
         ])
         
         //Assemble Bottom Container
@@ -396,11 +399,11 @@ class HomeViewController: UIViewController, GradeDelegate {
 
         NSLayoutConstraint.activate([
             timeLeft.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
-            timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 20))
+            timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 30))
         ])
 
         NSLayoutConstraint.activate([
-            minutesLeftLabel.topAnchor.constraint(equalTo: timeLeft.bottomAnchor, constant: -20),
+            minutesLeftLabel.topAnchor.constraint(equalTo: timeLeft.bottomAnchor, constant: -10),
             minutesLeftLabel.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor)
         ])
 

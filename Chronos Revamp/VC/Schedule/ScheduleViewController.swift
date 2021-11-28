@@ -50,7 +50,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     let dayInfo: UILabel = { //is the custon message from firebase that changes daily
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 30, weight: .regular)
+        field.font = .systemFont(ofSize: 28, weight: .regular)
         field.textColor = .white
         field.numberOfLines = 5
         field.textAlignment = .left
@@ -150,7 +150,6 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(photos[indexPath.row])
         let vc = DetailScheduleViewController(image: UIImage(named: photos[indexPath.row])!, imageTitle: photos[indexPath.row])
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true)
@@ -162,7 +161,6 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     fileprivate func setConstraints() {
         
-        print("Schedule View Height: \(view.height)")
         //Assemble top container
         NSLayoutConstraint.activate([
             topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
@@ -189,8 +187,8 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
-            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
-            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.5),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.5)
         ])
 
         NSLayoutConstraint.activate([

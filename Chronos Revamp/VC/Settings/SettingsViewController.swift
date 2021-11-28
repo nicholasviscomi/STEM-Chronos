@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let dayInfo: UILabel = { //is the custon message from firebase that changes daily
         let field = UILabel()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = .systemFont(ofSize: 20, weight: .regular)
+        field.font = .systemFont(ofSize: 28, weight: .regular)
         field.textColor = .white
         field.numberOfLines = 5
         field.textAlignment = .left
@@ -104,6 +104,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //constant time update
         _ = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 
+        dayInfo.text = "Settings"
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -130,7 +131,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             sectionText.append(keys)
             headers = ["Settings","Resources"]
-            print("Section Text \(sectionText)\nLinks: \(links)")
             tableView.reloadData()
         }
     }
@@ -260,7 +260,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
    
     fileprivate func setConstraints() {
         
-        print("Schedule View Height: \(view.height)")
         //Assemble top container
         NSLayoutConstraint.activate([
             topContainer.heightAnchor.constraint(equalToConstant: view.height/3 + view.safeAreaInsets.top + (view.height/13)),
@@ -287,8 +286,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         NSLayoutConstraint.activate([
             logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             logoImage.centerYAnchor.constraint(equalTo: topPurpleBackground.centerYAnchor),
-            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.2),
-            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.2)
+            logoImage.widthAnchor.constraint(equalToConstant: view.width/3.5),
+            logoImage.heightAnchor.constraint(equalToConstant: view.width/3.5)
         ])
 
         NSLayoutConstraint.activate([
