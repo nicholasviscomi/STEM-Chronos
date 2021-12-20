@@ -113,7 +113,7 @@ class GradeSelectionViewController: UIViewController {
         defaults.set(HomeViewController.hasSelectedGrade, forKey: UDKeys.firstTimeOpening)
         defaults.set("\(selectedGrade)", forKey: UDKeys.grade)
         
-        gradeDelegate?.didSelectGrade()
+        gradeDelegate?.didSelectGrade(grade: selectedGrade)
         
         self.dismiss(animated: true, completion: nil)
     }

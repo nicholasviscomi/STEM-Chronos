@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F1BEC5322A46B26BE779871 /* libPods-Chronos Revamp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7464F32C2C718CC560DDCDBA /* libPods-Chronos Revamp.a */; };
 		7B0586F924E0E2EC0053DD27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */; };
 		7B0586FB24E0E2EC0053DD27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */; };
 		7B05870224E0E2F10053DD27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B05870124E0E2F10053DD27 /* Assets.xcassets */; };
@@ -23,6 +22,7 @@
 		7B937F7B261FE4AD007713CA /* DesignFlow in Resources */ = {isa = PBXBuildFile; fileRef = 7B937F7A261FE4AD007713CA /* DesignFlow */; };
 		7B937F7F261FE889007713CA /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 7B937F7E261FE889007713CA /* TODO */; };
 		7B9EC01426470D7700862643 /* Tests in Resources */ = {isa = PBXBuildFile; fileRef = 7B9EC01326470D7700862643 /* Tests */; };
+		7BAB82C02770226A0018CE0C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7BAB82BF2770226A0018CE0C /* FirebaseDatabase */; };
 		7BAEA83425C1E1BA00695920 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEA83325C1E1BA00695920 /* CacheManager.swift */; };
 		7BC00C8024F1FD470095BF61 /* DetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC00C7F24F1FD470095BF61 /* DetailScheduleViewController.swift */; };
 		7BCD467C24E1EED60004C86B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD467B24E1EED60004C86B /* HomeViewController.swift */; };
@@ -31,33 +31,8 @@
 		7BCD468724E1EEED0004C86B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468224E1EEED0004C86B /* Helper.swift */; };
 		7BCD468A24E1EEFE0004C86B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */; };
 		7BCD468B24E1EEFE0004C86B /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */; };
-		7BCEAA35262263D50037DBAD /* SystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA34262263D50037DBAD /* SystemSmall.swift */; };
-		7BCEAA39262263E10037DBAD /* SystemMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA38262263E10037DBAD /* SystemMedium.swift */; };
-		7BCEAA3D262263EB0037DBAD /* SystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */; };
-		7BCEAA412622645D0037DBAD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA402622645D0037DBAD /* DataModel.swift */; };
-		7BCEAA46262264F00037DBAD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA402622645D0037DBAD /* DataModel.swift */; };
-		7BCEAA492622659E0037DBAD /* SystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA34262263D50037DBAD /* SystemSmall.swift */; };
-		7BCEAA54262266830037DBAD /* SystemMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA38262263E10037DBAD /* SystemMedium.swift */; };
-		7BCEAA5A262266920037DBAD /* SystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */; };
 		7BD094A325C4780500B7E903 /* GradeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD094A225C4780500B7E903 /* GradeDelegate.swift */; };
-		7BF2E606261F6497001F17C3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF2E605261F6497001F17C3 /* WidgetKit.framework */; };
-		7BF2E608261F6497001F17C3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF2E607261F6497001F17C3 /* SwiftUI.framework */; };
-		7BF2E60B261F6497001F17C3 /* Chronos_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF2E60A261F6497001F17C3 /* Chronos_Widget.swift */; };
-		7BF2E60E261F6499001F17C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BF2E60D261F6499001F17C3 /* Assets.xcassets */; };
-		7BF2E610261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7BF2E60C261F6497001F17C3 /* Chronos_Widget.intentdefinition */; };
-		7BF2E611261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7BF2E60C261F6497001F17C3 /* Chronos_Widget.intentdefinition */; };
-		7BF2E614261F6499001F17C3 /* Chronos WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7BF2E604261F6497001F17C3 /* Chronos WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7BF2E612261F6499001F17C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7B0586ED24E0E2EC0053DD27 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7BF2E603261F6497001F17C3;
-			remoteInfo = "Chronos WidgetExtension";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7BF2E615261F649A001F17C3 /* Embed App Extensions */ = {
@@ -66,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				7BF2E614261F6499001F17C3 /* Chronos WidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,8 +48,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B651FBC63662F502C8BB22C /* Pods-Chronos Revamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chronos Revamp.debug.xcconfig"; path = "Target Support Files/Pods-Chronos Revamp/Pods-Chronos Revamp.debug.xcconfig"; sourceTree = "<group>"; };
-		7464F32C2C718CC560DDCDBA /* libPods-Chronos Revamp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chronos Revamp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0586F524E0E2EC0053DD27 /* Stem Chronos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stem Chronos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,19 +73,9 @@
 		7BCD468224E1EEED0004C86B /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		7BCD468824E1EEFE0004C86B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7BCD468924E1EEFE0004C86B /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
-		7BCEAA34262263D50037DBAD /* SystemSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSmall.swift; sourceTree = "<group>"; };
-		7BCEAA38262263E10037DBAD /* SystemMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMedium.swift; sourceTree = "<group>"; };
-		7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLarge.swift; sourceTree = "<group>"; };
-		7BCEAA402622645D0037DBAD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		7BD094A225C4780500B7E903 /* GradeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeDelegate.swift; sourceTree = "<group>"; };
-		7BF2E604261F6497001F17C3 /* Chronos WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Chronos WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BF2E605261F6497001F17C3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7BF2E607261F6497001F17C3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		7BF2E60A261F6497001F17C3 /* Chronos_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chronos_Widget.swift; sourceTree = "<group>"; };
-		7BF2E60C261F6497001F17C3 /* Chronos_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Chronos_Widget.intentdefinition; sourceTree = "<group>"; };
-		7BF2E60D261F6499001F17C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7BF2E60F261F6499001F17C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA329CFDDC8ACD54988D8F50 /* Pods-Chronos Revamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chronos Revamp.release.xcconfig"; path = "Target Support Files/Pods-Chronos Revamp/Pods-Chronos Revamp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,35 +83,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F1BEC5322A46B26BE779871 /* libPods-Chronos Revamp.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7BF2E601261F6497001F17C3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7BF2E608261F6497001F17C3 /* SwiftUI.framework in Frameworks */,
-				7BF2E606261F6497001F17C3 /* WidgetKit.framework in Frameworks */,
+				7BAB82C02770226A0018CE0C /* FirebaseDatabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		648A57C82B9BAB195618660E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3B651FBC63662F502C8BB22C /* Pods-Chronos Revamp.debug.xcconfig */,
-				EA329CFDDC8ACD54988D8F50 /* Pods-Chronos Revamp.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		79DEFD1674C6562B0639A35F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7464F32C2C718CC560DDCDBA /* libPods-Chronos Revamp.a */,
 				7BF2E605261F6497001F17C3 /* WidgetKit.framework */,
 				7BF2E607261F6497001F17C3 /* SwiftUI.framework */,
 			);
@@ -160,9 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				7B0586F724E0E2EC0053DD27 /* Chronos Revamp */,
-				7BF2E609261F6497001F17C3 /* Chronos Widget */,
 				7B0586F624E0E2EC0053DD27 /* Products */,
-				648A57C82B9BAB195618660E /* Pods */,
 				79DEFD1674C6562B0639A35F /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -171,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				7B0586F524E0E2EC0053DD27 /* Stem Chronos.app */,
-				7BF2E604261F6497001F17C3 /* Chronos WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +125,8 @@
 				7B0586F824E0E2EC0053DD27 /* AppDelegate.swift */,
 				7B0586FA24E0E2EC0053DD27 /* SceneDelegate.swift */,
 				7B06564724E86A8B005134E4 /* Utilities */,
+				7BD094A125C477D300B7E903 /* Protocols */,
+				7B4990EC25BF901400210135 /* Database */,
 				7BCD468D24E1EFBB0004C86B /* VC */,
 				7BCD467D24E1EEED0004C86B /* Cells */,
 				7B05870124E0E2F10053DD27 /* Assets.xcassets */,
@@ -198,8 +140,6 @@
 		7B06564724E86A8B005134E4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				7BD094A125C477D300B7E903 /* Protocols */,
-				7B4990EC25BF901400210135 /* Database */,
 				7BAEA83325C1E1BA00695920 /* CacheManager.swift */,
 				7BCD468224E1EEED0004C86B /* Helper.swift */,
 				7B4990EF25BF905200210135 /* Colors.swift */,
@@ -272,35 +212,12 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
-		7BCEAA2F262263B90037DBAD /* SystemViews */ = {
-			isa = PBXGroup;
-			children = (
-				7BCEAA34262263D50037DBAD /* SystemSmall.swift */,
-				7BCEAA38262263E10037DBAD /* SystemMedium.swift */,
-				7BCEAA3C262263EB0037DBAD /* SystemLarge.swift */,
-			);
-			path = SystemViews;
-			sourceTree = "<group>";
-		};
 		7BD094A125C477D300B7E903 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				7BD094A225C4780500B7E903 /* GradeDelegate.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		7BF2E609261F6497001F17C3 /* Chronos Widget */ = {
-			isa = PBXGroup;
-			children = (
-				7BCEAA2F262263B90037DBAD /* SystemViews */,
-				7BCEAA402622645D0037DBAD /* DataModel.swift */,
-				7BF2E60A261F6497001F17C3 /* Chronos_Widget.swift */,
-				7BF2E60C261F6497001F17C3 /* Chronos_Widget.intentdefinition */,
-				7BF2E60D261F6499001F17C3 /* Assets.xcassets */,
-				7BF2E60F261F6499001F17C3 /* Info.plist */,
-			);
-			path = "Chronos Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +227,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B05870924E0E2F10053DD27 /* Build configuration list for PBXNativeTarget "Chronos Revamp" */;
 			buildPhases = (
-				9C47689763E3CB649273FD56 /* [CP] Check Pods Manifest.lock */,
 				7B0586F124E0E2EC0053DD27 /* Sources */,
 				7B0586F224E0E2EC0053DD27 /* Frameworks */,
 				7B0586F324E0E2EC0053DD27 /* Resources */,
@@ -319,29 +235,14 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BF2E613261F6499001F17C3 /* PBXTargetDependency */,
 			);
 			name = "Chronos Revamp";
+			packageProductDependencies = (
+				7BAB82BF2770226A0018CE0C /* FirebaseDatabase */,
+			);
 			productName = "Chronos Revamp";
 			productReference = 7B0586F524E0E2EC0053DD27 /* Stem Chronos.app */;
 			productType = "com.apple.product-type.application";
-		};
-		7BF2E603261F6497001F17C3 /* Chronos WidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7BF2E618261F649A001F17C3 /* Build configuration list for PBXNativeTarget "Chronos WidgetExtension" */;
-			buildPhases = (
-				7BF2E600261F6497001F17C3 /* Sources */,
-				7BF2E601261F6497001F17C3 /* Frameworks */,
-				7BF2E602261F6497001F17C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Chronos WidgetExtension";
-			productName = "Chronos WidgetExtension";
-			productReference = 7BF2E604261F6497001F17C3 /* Chronos WidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -356,9 +257,6 @@
 					7B0586F424E0E2EC0053DD27 = {
 						CreatedOnToolsVersion = 11.5;
 					};
-					7BF2E603261F6497001F17C3 = {
-						CreatedOnToolsVersion = 12.4;
-					};
 				};
 			};
 			buildConfigurationList = 7B0586F024E0E2EC0053DD27 /* Build configuration list for PBXProject "Chronos Revamp" */;
@@ -370,12 +268,14 @@
 				Base,
 			);
 			mainGroup = 7B0586EC24E0E2EC0053DD27;
+			packageReferences = (
+				7BAB82BE2770226A0018CE0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 7B0586F624E0E2EC0053DD27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				7B0586F424E0E2EC0053DD27 /* Chronos Revamp */,
-				7BF2E603261F6497001F17C3 /* Chronos WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -394,40 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7BF2E602261F6497001F17C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7BF2E60E261F6499001F17C3 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9C47689763E3CB649273FD56 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chronos Revamp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B0586F124E0E2EC0053DD27 /* Sources */ = {
@@ -441,47 +308,21 @@
 				7BAEA83425C1E1BA00695920 /* CacheManager.swift in Sources */,
 				7B06564924E86AA6005134E4 /* SchoolDay.swift in Sources */,
 				7BCD468424E1EEED0004C86B /* ScheduleCell.swift in Sources */,
-				7BF2E611261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */,
 				7BCD468A24E1EEFE0004C86B /* SettingsViewController.swift in Sources */,
 				7BCD468524E1EEED0004C86B /* Times.swift in Sources */,
-				7BCEAA35262263D50037DBAD /* SystemSmall.swift in Sources */,
 				7BCD468724E1EEED0004C86B /* Helper.swift in Sources */,
 				7BC00C8024F1FD470095BF61 /* DetailScheduleViewController.swift in Sources */,
 				7B66B27C24E760A5004DD70B /* GradeSelectionViewController.swift in Sources */,
 				7B06564624E868BD005134E4 /* DatabaseManager.swift in Sources */,
 				7B0586F924E0E2EC0053DD27 /* AppDelegate.swift in Sources */,
-				7BCEAA3D262263EB0037DBAD /* SystemLarge.swift in Sources */,
 				7B6167C924EC717F00B7AA73 /* PeriodTimes.swift in Sources */,
-				7BCEAA39262263E10037DBAD /* SystemMedium.swift in Sources */,
 				7BCD468B24E1EEFE0004C86B /* ScheduleViewController.swift in Sources */,
 				7B06564B24E87294005134E4 /* Schedule.swift in Sources */,
 				7B0586FB24E0E2EC0053DD27 /* SceneDelegate.swift in Sources */,
-				7BCEAA412622645D0037DBAD /* DataModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7BF2E600261F6497001F17C3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7BF2E60B261F6497001F17C3 /* Chronos_Widget.swift in Sources */,
-				7BF2E610261F6499001F17C3 /* Chronos_Widget.intentdefinition in Sources */,
-				7BCEAA492622659E0037DBAD /* SystemSmall.swift in Sources */,
-				7BCEAA46262264F00037DBAD /* DataModel.swift in Sources */,
-				7BCEAA5A262266920037DBAD /* SystemLarge.swift in Sources */,
-				7BCEAA54262266830037DBAD /* SystemMedium.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7BF2E613261F6499001F17C3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7BF2E603261F6497001F17C3 /* Chronos WidgetExtension */;
-			targetProxy = 7BF2E612261F6499001F17C3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7B05870324E0E2F10053DD27 /* LaunchScreen.storyboard */ = {
@@ -613,7 +454,6 @@
 		};
 		7B05870A24E0E2F10053DD27 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B651FBC63662F502C8BB22C /* Pods-Chronos Revamp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -634,7 +474,6 @@
 		};
 		7B05870B24E0E2F10053DD27 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA329CFDDC8ACD54988D8F50 /* Pods-Chronos Revamp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -650,50 +489,6 @@
 				PRODUCT_NAME = "Stem Chronos";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		7BF2E616261F649A001F17C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XRWZR9H6VF;
-				INFOPLIST_FILE = "Chronos Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NickViscomi.Chronos-Revamp.Chronos-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		7BF2E617261F649A001F17C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XRWZR9H6VF;
-				INFOPLIST_FILE = "Chronos Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NickViscomi.Chronos-Revamp.Chronos-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -718,16 +513,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7BF2E618261F649A001F17C3 /* Build configuration list for PBXNativeTarget "Chronos WidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7BF2E616261F649A001F17C3 /* Debug */,
-				7BF2E617261F649A001F17C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7BAB82BE2770226A0018CE0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 8.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7BAB82BF2770226A0018CE0C /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BAB82BE2770226A0018CE0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B0586ED24E0E2EC0053DD27 /* Project object */;
 }

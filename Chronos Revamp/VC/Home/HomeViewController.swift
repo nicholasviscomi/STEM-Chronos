@@ -249,7 +249,6 @@ class HomeViewController: UIViewController, GradeDelegate {
             }
             
             HomeViewController.grade = grade
-            
         } else {
             let vc = GradeSelectionViewController()
             vc.modalPresentationStyle = .overCurrentContext
@@ -259,7 +258,8 @@ class HomeViewController: UIViewController, GradeDelegate {
         }
     }
     
-    func didSelectGrade() {
+    func didSelectGrade(grade: Grade) {
+        HomeViewController.grade = grade
         getSchoolDayData(true)
     }
     
@@ -378,8 +378,8 @@ class HomeViewController: UIViewController, GradeDelegate {
         ])
 
         NSLayoutConstraint.activate([
-            letterDay.centerXAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-            letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -30)
+            letterDay.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
+            letterDay.bottomAnchor.constraint(equalTo: topYellowBackground.bottomAnchor, constant: -40)
         ])
         
         //Assemble Bottom Container
@@ -399,7 +399,7 @@ class HomeViewController: UIViewController, GradeDelegate {
 
         NSLayoutConstraint.activate([
             timeLeft.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
-            timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 30))
+            timeLeft.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -(view.safeAreaInsets.bottom + 20))
         ])
 
         NSLayoutConstraint.activate([
