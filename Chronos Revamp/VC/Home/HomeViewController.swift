@@ -229,6 +229,7 @@ class HomeViewController: UIViewController, GradeDelegate {
         if !hasOpenedBefore {
             let vc = GradeSelectionViewController()
             vc.modalPresentationStyle = .overCurrentContext
+            vc.gradeDelegate = self
             present(vc, animated: true)
             return
         } else {
@@ -248,6 +249,7 @@ class HomeViewController: UIViewController, GradeDelegate {
                 
             }
             
+            print("🔴Grade from UserDefaults: \(String(describing: grade))")
             HomeViewController.grade = grade
         } else {
             let vc = GradeSelectionViewController()
@@ -259,6 +261,7 @@ class HomeViewController: UIViewController, GradeDelegate {
     }
     
     func didSelectGrade(grade: Grade) {
+        print("🟣HomeVC: new grade = \(grade)")
         HomeViewController.grade = grade
         getSchoolDayData(true)
     }

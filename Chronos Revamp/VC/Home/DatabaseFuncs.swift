@@ -40,11 +40,11 @@ extension HomeViewController {
                     print("school day error")
                     return
                 }
-                print("school day retrieved")
+//                print("school day retrieved")
                 
                 guard schoolDay.daySchedule != .weekend else {
                     self.isWeekend()
-                    print("weekend time!")
+//                    print("weekend time!")
                     return
                 }
                 
@@ -54,10 +54,6 @@ extension HomeViewController {
                 
                 DatabaseManager.shared.getSchoolSchedule(with: schoolDay) { (schedule) in
                     if let schedule = schedule {
-                        print("congrats nick you are a great programmer lol")
-//                        print(schedule.startTimes)
-//                        print(schedule.endTimes)
-//                        print(schedule.periodName)
                         self.getTimeLeft(schedule: schedule)
                     } else {
                         self.dayInfo.text = ""
@@ -71,22 +67,14 @@ extension HomeViewController {
     }
     
     fileprivate func getTimeLeft(schedule: Schedule) {
-        guard !schedule.startTimes.isEmpty else { return }
-        
-        findTimeLeftHelper(startTimes: schedule.startTimes, endTimes: schedule.endTimes, periodNames: schedule.periodName)
-    }
-    
-    fileprivate func findTimeLeftHelper(startTimes: [String], endTimes: [String], periodNames: [String]) {
-        guard periodNames.count > 0 else { return }
+        guard !schedule.startTimes.isEmpty, schedule.periodNames.count > 0 else { return }
         
         //MARK: loop through each start and end time, if the current time is between the start and end that period is the current one
-        for i in 0...periodNames.count-1 {
+        for i in 0...schedule.periodNames.count-1 {
             guard let userGrade = HomeViewController.grade else { print("error obtainng selected grade"); return }
-            isTheTimeBetween(time1: startTimes[i], time2: endTimes[i], period: periodNames[i], grade: userGrade)
+            isTheTimeBetween(time1: schedule.startTimes[i], time2: schedule.endTimes[i], period: schedule.periodNames[i], grade: userGrade)
         }
-        
     }
-    
     
     fileprivate func isTheTimeBetween(time1: String, time2: String, period: String, grade: Grade) {
         

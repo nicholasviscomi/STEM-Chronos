@@ -101,6 +101,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         addViews()
         setConstraints()
         
+        view.backgroundColor = .systemBackground
         //constant time update
         _ = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 

@@ -22,7 +22,7 @@ extension DatabaseManager {
     
     public func getSchoolDay(completion: @escaping (SchoolDay?) -> Void) {
         let currentDateString = currentDate()
-        print("Curr date \(currentDateString)")
+//        print("Curr date \(currentDateString)")
         database.child("\(currentDateString)").observe(.value) { (snapshot) in
             guard let data = snapshot.value as? [String: Any] else {
                 completion(nil)
@@ -93,6 +93,8 @@ extension DatabaseManager {
             print("no grade selected")
             return
         }
+        
+        print("🟢HomeVC grade: \(grade)")
         if schoolDay.daySchedule == .weekend {
             isWeekend()
             return
@@ -119,7 +121,7 @@ extension DatabaseManager {
     
     public func getDayInfo(completion: @escaping (String?) -> Void) {
         let currentDateString = currentDate()
-        print(currentDateString)
+//        print(currentDateString)
         //Set the values of type of day and letter day
         database.child("\(currentDateString)/Day Info").observe(.value) { (snapshot) in
             guard let info = snapshot.value as? String  else {
@@ -184,7 +186,7 @@ extension DatabaseManager {
                 completion(nil)
                 return
             }
-            print(data)
+//            print(data)
             completion(data)
         }
     }

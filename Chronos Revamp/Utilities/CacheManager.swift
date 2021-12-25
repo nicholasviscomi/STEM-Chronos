@@ -26,7 +26,7 @@ final class CacheManager {
     private func cacheSchedule(schedule: Schedule) {
         defaults.set(schedule.startTimes, forKey: CacheKeys.startTimes)
         defaults.set(schedule.endTimes, forKey: CacheKeys.endTimes)
-        defaults.set(schedule.periodName, forKey: CacheKeys.periodNames)
+        defaults.set(schedule.periodNames, forKey: CacheKeys.periodNames)
     }
     
 }

@@ -102,6 +102,7 @@ class ScheduleViewController: UIViewController, UICollectionViewDelegate, UIColl
         addViews()
         setConstraints()
         
+        view.backgroundColor = .systemBackground
         //constant time update
         _ = Timer.scheduledTimer(timeInterval: 0.9, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         

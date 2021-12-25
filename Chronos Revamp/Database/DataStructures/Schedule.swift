@@ -12,12 +12,12 @@ class Schedule {
     var grade: Grade
     var startTimes: [String]
     var endTimes: [String]
-    var periodName: [String]
+    var periodNames: [String]
     
     init(grade: Grade, startTimes: [String], endTimes: [String], periodName: [String]) {
         self.grade = grade
         self.startTimes = startTimes
         self.endTimes = endTimes
-        self.periodName = periodName
+        self.periodNames = periodName
     }
 }

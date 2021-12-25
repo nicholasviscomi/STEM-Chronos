@@ -13,35 +13,35 @@ struct Times {
     struct Regular {
         struct FS {
             struct OneSeven {
-                static let OneSevenStartTimes = ["07:40 AM","08:39 AM","09:33 AM","10:27 AM","11:21 AM","11:55 AM","12:49 PM","01:43 PM","02:36 PM","12:00 AM",]
-                static let OneSevenEndTimes = ["08:35 AM","09:29 AM","10:23 AM","11:17 AM","11:51 AM","12:45 PM","01:39 PM","02:35 PM","11:59 PM","07:40 AM"]
+                static let OneSevenStartTimes = ["07:40 AM","08:39 AM","09:33 AM","10:27 AM","11:21 AM","11:55 AM","12:49 PM","01:43 PM","02:40 PM","12:00 AM",]
+                static let OneSevenEndTimes = ["08:35 AM","09:29 AM","10:23 AM","11:17 AM","11:51 AM","12:45 PM","01:39 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let OneSevenPeriodName = ["1st period","2nd period","3rd period","4th period","lunch","5th period","6th period","7th period", "after school", "before school"]
             }
             struct OneFour {
-                static let OneFourStartTimes = ["07:40 AM","09:19 AM","10:53 AM","11:27 AM","01:01 PM","02:36 PM","12:00 AM"]
-                static let OneFourEndTimes = ["09:15 AM","10:49 AM","11:23 AM","12:57 PM","02:35 PM","11:59 PM","07:40 AM"]
+                static let OneFourStartTimes = ["07:40 AM","09:19 AM","10:53 AM","11:27 AM","01:01 PM","02:40 PM","12:00 AM"]
+                static let OneFourEndTimes = ["09:15 AM","10:49 AM","11:23 AM","12:57 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let OneFourPeriodName = ["1st period","2nd period","lunch","3rd period","4th period","after school", "before school"]
             }
             struct FiveSeven {
-                static let FiveSevenStartTimes = ["07:40 AM","09:19 AM","09:58 AM","11:32 AM","12:05 PM","01:40 PM","02:36 PM","12:00 AM"]
-                static let FiveSevenEndTimes = ["09:15 AM","09:54 AM","11:28 AM","12:02 PM","01:36 PM","02:35 PM","11:59 PM","07:40 AM"]
+                static let FiveSevenStartTimes = ["07:40 AM","09:19 AM","09:58 AM","11:32 AM","12:05 PM","01:40 PM","02:40 PM","12:00 AM"]
+                static let FiveSevenEndTimes = ["09:15 AM","09:54 AM","11:28 AM","12:02 PM","01:36 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let FiveSevenPeriodName = ["5th period","advisory","6th period","lunch","7th period","seminar","after school", "before school"]
             }
         }
         struct JS {
             struct OneSeven {
-                static let OneSevenStartTimes = ["07:40 AM","08:39 AM","09:33 AM","10:27 AM","11:21 AM","11:55 AM","12:49 PM","01:43 PM","02:36 PM","12:00 AM",]
-                static let OneSevenEndTimes = ["08:35 AM","09:29 AM","10:23 AM","11:17 AM","11:51 AM","12:45 PM","01:39 PM","02:35 PM","11:59 PM","07:40 AM"]
+                static let OneSevenStartTimes = ["07:40 AM","08:39 AM","09:33 AM","10:27 AM","11:21 AM","12:15 PM","12:49 PM","01:43 PM","02:40 PM","12:00 AM",]
+                static let OneSevenEndTimes = ["08:35 AM","09:29 AM","10:23 AM","11:17 AM","12:11 PM","12:45 PM","01:39 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let OneSevenPeriodName = ["1st period","2nd period","3rd period","4th period","5th period","lunch","6th period","7th period", "after school", "before school"]
             }
             struct OneFour {
-                static let OneFourStartTimes = ["07:40 AM","09:19 AM","10:53 AM","12:27 PM","01:01 PM","02:36 PM","12:00 AM"]
-                static let OneFourEndTimes = ["09:15 AM","10:49 AM","12:23 PM","12:57 PM","02:35 PM","11:59 PM","07:40 AM"]
+                static let OneFourStartTimes = ["07:40 AM","09:19 AM","10:53 AM","12:27 PM","01:01 PM","02:40 PM","12:00 AM"]
+                static let OneFourEndTimes = ["09:15 AM","10:49 AM","12:23 PM","12:57 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let OneFourPeriodName = ["1st period","2nd period","3rd period","lunch","4th period","after school", "before school"]
             }
             struct FiveSeven {
-                static let FiveSevenStartTimes = ["07:40 AM","09:19 AM","09:58 AM","11:32 AM","01:05 PM","01:40","02:36 PM","12:00 AM"]
-                static let FiveSevenEndTimes = ["09:15 AM","09:54 AM","11:28 AM","01:02 PM","01:36","02:35 PM","11:59 PM","07:40 AM"]
+                static let FiveSevenStartTimes = ["07:40 AM","09:19 AM","09:58 AM","11:32 AM","01:05 PM","01:40","02:40 PM","12:00 AM"]
+                static let FiveSevenEndTimes = ["09:15 AM","09:54 AM","11:28 AM","01:02 PM","01:36 PM","02:40 PM","11:59 PM","07:40 AM"]
                 static let FiveSevenPeriodName = ["5th period","advisory","6th period","7th period","lunch","seminar","after school", "before school"]
             }
         }
